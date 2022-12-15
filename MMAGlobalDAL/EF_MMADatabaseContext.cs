@@ -1,0 +1,24 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using CommonUtilities;
+
+
+namespace MMAGlobalDAL
+{
+    public class EF_MMADatabaseContext : DbContext
+    {
+        public EF_MMADatabaseContext(DbContextOptions<EF_MMADatabaseContext> options) : base(options) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.UseSerialColumns();
+
+            // Configure StudentId as FK for StudentAddress
+
+            //  modelBuilder.Entity<District_master>()
+            // .HasOne(p => p.Zone_Masters)
+            //.WithMany(b => b.District_masters)
+            // .HasForeignKey(p => p.zoneid);
+        }
+
+    }
+}
