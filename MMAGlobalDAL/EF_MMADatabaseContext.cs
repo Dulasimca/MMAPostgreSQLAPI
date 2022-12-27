@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using CommonUtilities;
-
+//using MMAGlobalDAL.DB_Entity;
+using MMAGlobalDAL.Database.DB_Entity;
 
 namespace MMAGlobalDAL
 {
@@ -20,5 +21,6 @@ namespace MMAGlobalDAL
             // .HasForeignKey(p => p.zoneid);
         }
 
+        public DbSet<trainingdb> trainingdb { get; set; }
     }
 }
