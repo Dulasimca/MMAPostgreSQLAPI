@@ -47,5 +47,33 @@ namespace MMAGlobalBAL.ManageDB
             }
          
         }
+
+        public List<trainingdb_Model> GetData(DB_trainingdb _db)
+        {
+            try
+            {
+                List<trainingdb_Model> _Model = new List<trainingdb_Model>();
+                var restul = _db.Getdata();
+                restul.ForEach(model => _Model.Add(new trainingdb_Model()
+                {
+                    id = model.id,
+                    name = model.name,
+                    age = model.age,
+                    address = model.address,
+                    salary = model.salary,
+                    join_date = model.join_date,
+                    flag = model.flag
+                }));
+             
+                return _Model;
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError("ManageTraningDB save method: " + ex.Message);
+                return null;
+            }
+
+        }
+
     }
 }
