@@ -37,5 +37,11 @@ namespace MMAGlobalDAL.Database.DB_Helper
             }
             return isSuccess;
         }
+
+        public List<trainingdb> Getdata()
+        {
+            return _DataContext.trainingdb.ToList();
+        }
+
     }
 }

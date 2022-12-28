@@ -35,7 +35,25 @@ namespace MMAGlobalAPI.Controllers
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("SaveCasetypeMaster : " + ex.Message);
+                AuditLog.WriteError("SaveTrainingDB : " + ex.Message);
+                return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/GetTrainingDB")]
+        public IActionResult Get()
+        {
+            try
+            {
+                ManageTraningDB _Manage = new ManageTraningDB();
+
+                var result= _Manage.GetData(_db);
+                return Ok(result);// ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError("GetTrainingDB : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }

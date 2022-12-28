@@ -17,7 +17,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public string name { get; set; }
         public int age { get; set; }
         public string address { get; set; }
-        public int salary { get; set; }
+        public float salary { get; set; }
         public DateTime join_date { get; set; }
         public Boolean flag { get; set; }
     }
