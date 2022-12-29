@@ -12,23 +12,23 @@ using System.Threading.Tasks;
 namespace MMAGlobalAPI.Controllers
 {
     [ApiController]
-    public class RolemasterController : Controller
+    public class CountrymasterContoller : Controller
     {
-        private readonly DB_role_master _db;
-        public RolemasterController(EF_MMADatabaseContext eF_DataContext)
+        private readonly DB_country_master _db;
+        public CountrymasterContoller(EF_MMADatabaseContext eF_DataContext)
         {
-            _db = new DB_role_master(eF_DataContext);
+            _db = new DB_country_master(eF_DataContext);
         }
 
         [HttpPost]
-        [Route("api/[controller]/SaveRolemaster")]
-        public IActionResult Post([FromBody] role_master_Model model)
+        [Route("api/[controller]/SaveCountrymaster")]
+        public IActionResult Post([FromBody] country_master_Model model)
         {
             try
             {
-                ManageRolemaster _Manage = new ManageRolemaster();
+                ManageCountrymaster _Manage = new ManageCountrymaster();
 
-                bool isSuccess = _Manage.Save(model,_db);
+                bool isSuccess = _Manage.Save(model, _db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
@@ -39,23 +39,21 @@ namespace MMAGlobalAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/GetRolemaster")]
+        [Route("api/[controller]/GetCountrymaster")]
         public IActionResult Get()
         {
             try
             {
-                ManageRolemaster _Manage = new ManageRolemaster();
-
+                ManageCountrymaster _Manage = new ManageCountrymaster();
                 var result = _Manage.GetData(_db);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("GetRolemaster : " + ex.Message);
+                AuditLog.WriteError("GetCountrymaster : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
-
     }
 }
 

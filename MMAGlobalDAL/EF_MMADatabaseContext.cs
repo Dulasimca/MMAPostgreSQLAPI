@@ -24,5 +24,6 @@ namespace MMAGlobalDAL
         public DbSet<trainingdb> trainingdb { get; set; }
 
         public DbSet<role_master> role_master { get; set; }
+        public DbSet<country_master> country_master { get; set; }
     }
 }
