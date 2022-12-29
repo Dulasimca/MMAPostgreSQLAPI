@@ -22,5 +22,9 @@ namespace MMAGlobalDAL
         }
 
         public DbSet<trainingdb> trainingdb { get; set; }
+        public DbSet<union_masters> union_master { get; set; }
+        public DbSet<menu_master>menumaster { get; set; }
+        public DbSet<expensescategory_master> expensescategorymaster { get; set; }
+        public DbSet<city_master>citymaster { get; set; }
     }
 }
