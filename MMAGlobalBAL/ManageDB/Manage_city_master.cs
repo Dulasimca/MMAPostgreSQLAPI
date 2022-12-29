@@ -13,6 +13,12 @@ namespace MMAGlobalBAL.ManageDB
 {
    public class Manage_city_master
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="_db"></param>
+        /// <returns></returns>
         public bool Save(city_master_model model, DB_city_master _db)
         {
             bool isSuccess = false;
@@ -22,7 +28,6 @@ namespace MMAGlobalBAL.ManageDB
                 {
                     citycode = model.citycode,
                     cityname = model.cityname,
-                    countrycode = model.countrycode,
                     statecode = model.statecode,
                     flag = model.flag,
                    
@@ -38,20 +43,28 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<city_master_model> GetData(DB_city_master _db)
+        public List<city_master_model> GetData(DB_city_master _db,DB_statemaster _Statemaster)
         {
             try
             {
                 List<city_master_model> _Model = new List<city_master_model>();
-                var restul = _db.Getdata();
-                restul.ForEach(model => _Model.Add(new city_master_model()
-                {
-                    citycode = model.citycode,
-                    cityname = model.cityname,
-                    countrycode = model.countrycode,
-                    statecode = model.statecode,
-                    flag = model.flag,
-                }));
+                var result = _db.Getdata();
+                var _state = _Statemaster.Getdata();
+                _Model = (from city in result
+                             join state in _state on city.statecode equals state.statecode
+                             select new city_master_model
+                             {
+                                 citycode = city.citycode,
+                                 cityname = city.cityname,
+                                 statecode = city.statecode,
+                                 flag = city.flag,
+                                 statename =state.statename
+                             }).ToList();
+
+                //result.ForEach(model => _Model.Add(new city_master_model()
+                //{
+                    
+                //}));
 
                 return _Model;
             }

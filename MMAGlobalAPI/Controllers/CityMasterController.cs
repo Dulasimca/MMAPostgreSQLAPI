@@ -16,9 +16,11 @@ namespace MMAGlobalAPI.Controllers
     public class CityMasterController : Controller
     {
         private readonly DB_city_master _db;
+        private readonly DB_statemaster _state;
         public CityMasterController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_city_master(eF_DataContext);
+            _state = new DB_statemaster(eF_DataContext);
         }
         [HttpPost]
         [Route("api/[controller]/SaveCityMasterDB")]
@@ -28,7 +30,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_city_master _Manage = new Manage_city_master();
 
-                bool isSuccess = _Manage.Save(model, _db);
+                bool isSuccess = _Manage.Save(model,_db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
@@ -45,7 +47,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_city_master _Manage = new Manage_city_master();
 
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db, _state);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

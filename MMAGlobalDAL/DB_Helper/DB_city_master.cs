@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MMAGlobalDAL.Database.DB_Helper
 {
@@ -19,7 +20,12 @@ namespace MMAGlobalDAL.Database.DB_Helper
             bool isSuccess = false;
             try
             {
+
                 _DataContext.citymaster.Add(city_master);
+                if(city_master.citycode>0)
+                {
+                    _DataContext.Entry(city_master).State = EntityState.Modified;
+                }
                 _DataContext.SaveChanges();
                 isSuccess = true;
             }

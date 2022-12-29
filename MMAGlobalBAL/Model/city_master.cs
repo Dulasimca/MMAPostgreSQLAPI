@@ -10,8 +10,9 @@ namespace MMAGlobalBAL.Model
     {
         public int citycode { get; set; }
         public string cityname { get; set; }
-        public int countrycode { get; set; }
         public int statecode { get; set; }
         public Boolean flag { get; set; }
+        public string statename { get; set; }
+
     }
 }
