@@ -26,5 +26,15 @@ namespace MMAGlobalDAL
         public DbSet<menu_master>menumaster { get; set; }
         public DbSet<expensescategory_master> expensescategorymaster { get; set; }
         public DbSet<city_master>citymaster { get; set; }
+
+
+        public DbSet<sub_categorymasterdb> sub_category { get; set; }
+        public DbSet<main_categorymasterdb> maincategory_master { get; set; }
+
+        public DbSet<statemasterdb> state_master { get; set; } 
+        public DbSet<role_master> role_master { get; set; }
+        public DbSet<country_master> country_master { get; set; }
+
+
     }
 }
