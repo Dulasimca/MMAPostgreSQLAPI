@@ -16,9 +16,11 @@ namespace MMAGlobalAPI.Controllers
     public class MenuMasterController : Controller
     {
         private readonly DB_menu_master _db;
+        private readonly DB_role_master _role;
         public MenuMasterController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_menu_master(eF_DataContext);
+            _role = new DB_role_master(eF_DataContext);
         }
         [HttpPost]
         [Route("api/[controller]/Savemenumaster")]
@@ -45,7 +47,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Managemenu_master _Manage = new Managemenu_master();
 
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db,_role);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

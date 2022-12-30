@@ -22,7 +22,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public string icon { get; set; }
         public int roleid { get; set; }
         public Boolean isactive { get; set; }
-        public string priorities { get; set; }
+        public int priorities { get; set; }
 
     }
 }

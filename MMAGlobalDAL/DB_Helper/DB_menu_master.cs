@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MMAGlobalDAL.Database.DB_Helper
 {
@@ -20,6 +22,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             try
             {
                 _DataContext.menumaster.Add(menu_master);
+                if (menu_master.menuid > 0)
+                {
+                    _DataContext.Entry(menu_master).State = EntityState.Modified;
+                }
                 _DataContext.SaveChanges();
                 isSuccess = true;
             }
