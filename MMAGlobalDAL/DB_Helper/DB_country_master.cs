@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
+using Microsoft.EntityFrameworkCore;
 namespace MMAGlobalDAL.Database.DB_Helper
+
 {
    public class DB_country_master
     {
@@ -21,6 +23,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             {
                 // trainingdb.id = (_DataContext.trainingdb.Max(u => u.id)) + 1;
                 _DataContext.country_master.Add(country_master);
+                if(country_master.countrycode > 0)
+                {
+                    _DataContext.Entry(country_master).State = EntityState.Modified;
+                }
                 _DataContext.SaveChanges();
                 isSuccess = true;
             }

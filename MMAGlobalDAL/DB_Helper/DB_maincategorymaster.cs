@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace MMAGlobalDAL.Database.DB_Helper
 {
@@ -15,7 +15,16 @@ namespace MMAGlobalDAL.Database.DB_Helper
         {
             _DataContext = DataContext;
         }
+        public DB_maincategorymaster()
+        {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="maincategorymasters"></param>
+        /// <returns></returns>
         public bool SaveMainCategoryMaster(main_categorymasterdb maincategorymasters)
 
         {
@@ -23,6 +32,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             try
             {
                 _DataContext.maincategory_master.Add(maincategorymasters);
+                if(maincategorymasters.sino>0)
+                {
+                    _DataContext.Entry(maincategorymasters).State = EntityState.Modified;
+                }
                 _DataContext.SaveChanges();
                 isSuccess = true;
             }

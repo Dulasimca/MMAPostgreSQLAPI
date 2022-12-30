@@ -13,13 +13,12 @@ namespace MMAGlobalBAL.ManageDB
 {
     public class ManageStateMasterDb
     {
-        //private readonly DB_trainingdb _db;
-        //public ManageTraningDB(EF_MMADatabaseContext eF_DataContext)
-        //{
-        //    _db = new DB_trainingdb(eF_DataContext);
-        //}
-
-
+        /// <summary>
+        /// This method will store the state master data in to database. we can use same method for insert and update.
+        /// </summary>
+        /// <param name="model">we have to send the state master properties with values</param>
+        /// <param name="_db">Database connectoin property for sub category master</param>
+        /// <returns>return boolean values. true or false</returns>
         public bool Savestatemaster(state_masterdb model, DB_statemaster _db)
         {
             bool isSuccess = false;
@@ -30,7 +29,7 @@ namespace MMAGlobalBAL.ManageDB
                     statecode = model.statecode,
                     statename = model.statename,
                     countrycode = model.countrycode,
-                    flag = model.flag
+                    flag = model.flag,
 
                 };
                 isSuccess = _db.Savestatemaster(state_master);
@@ -43,19 +42,29 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<state_masterdb> GetData(DB_statemaster _db)
+        public List<state_masterdb> GetData(DB_statemaster _db, DB_country_master _Countrymaster)
         {
             try
             {
                 List<state_masterdb> _Model = new List<state_masterdb>();
                 var restul = _db.Getdata();
-                restul.ForEach(model => _Model.Add(new state_masterdb()
-                {
-                    statecode = model.statecode,
-                    statename = model.statename,
-                    countrycode = model.countrycode,
-                    flag = model.flag
-                }));
+                var _country = _Countrymaster.Getdata();
+                _Model = (from state in restul
+                          join country in _country on state.countrycode equals country.countrycode
+                          select new state_masterdb
+                          {
+                              statecode = state.statecode,
+                              statename = state.statename,
+                              countrycode = state.countrycode,
+                              flag = state.flag,
+                              countryname = country.countryname
+                          }).ToList();
+                        
+
+               // restul.ForEach(model => _Model.Add(new state_masterdb()
+                //{
+                   
+              //  }));
 
                 return _Model;
             }

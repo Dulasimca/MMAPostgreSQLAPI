@@ -17,9 +17,11 @@ namespace MMAGlobalAPI.Controllers
     {
 
         private readonly DB_statemaster _db;
+        private readonly DB_country_master _country;
         public StateMasterDBController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_statemaster(eF_DataContext);
+            _country = new DB_country_master(eF_DataContext);
         }
 
         [HttpPost]
@@ -48,7 +50,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 ManageStateMasterDb _Manage = new ManageStateMasterDb();
 
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db,_country);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

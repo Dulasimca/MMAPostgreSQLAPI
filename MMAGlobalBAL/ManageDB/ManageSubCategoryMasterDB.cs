@@ -14,6 +14,12 @@ namespace MMAGlobalBAL.ManageDB
 {
     public class ManageSubCategoryMasterDB
     {
+        /// <summary>
+        /// This method will store the sub category master data in to database. we can use same method for insert and update.
+        /// </summary>
+        /// <param name="model">we have to send the sub category master properties with values</param>
+        /// <param name="_db">Database connectoin property for sub category master</param>
+        /// <returns>return boolean values. true or false</returns>
         public bool Save(subcategorymaster_Model model, DB_subcategorymasterdb _db)
         {
             bool isSuccess = false;

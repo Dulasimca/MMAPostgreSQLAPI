@@ -13,6 +13,12 @@ namespace MMAGlobalBAL.ManageDB
 {
     public class ManageRolemaster
     {
+        /// <summary>
+        /// This method will store the role master data in to database. we can use same method for insert and update.
+        /// </summary>
+        /// <param name="model">we have to send the role master properties with values</param>
+        /// <param name="_db">Database connectoin property for role master</param>
+        /// <returns>return boolean values. true or false</returns>
         public bool Save(role_master_Model model, DB_role_master _db)
         {
             bool isSuccess = false;

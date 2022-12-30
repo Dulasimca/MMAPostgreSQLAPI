@@ -14,6 +14,13 @@ namespace MMAGlobalBAL.ManageDB
 {
     public class ManageMainCategoryMasterDB
     {
+        /// <summary>
+        /// This method will store the main category master data in to database. we can use same method for insert and update.
+        /// </summary>
+        /// <param name="model">we have to send the main category master properties with values</param>
+        /// <param name="_db">Database connectoin property for main category master</param>
+        /// <returns>return boolean values. true or false</returns>
+        /// 
         public bool Save(maincategorymaster_Model model, DB_maincategorymaster _db)
         {
             bool isSuccess = false;
@@ -28,15 +35,14 @@ namespace MMAGlobalBAL.ManageDB
                 };
                 isSuccess = _db.SaveMainCategoryMaster(maincategory_master);
 
-                return isSuccess;
             }
             catch (Exception ex)
             {
                 AuditLog.WriteError("ManageTraningDB save method: " + ex.Message);
-                return isSuccess;
             }
-
+            return isSuccess;
         }
+      
         public List<maincategorymaster_Model> GetData(DB_maincategorymaster _db)
         {
             try
