@@ -13,6 +13,12 @@ namespace MMAGlobalBAL.ManageDB
 {
     public class Manage_expensescategory_master
     {
+        /// <summary>
+        /// This method will store the expensescategory master data in to database. we can use same method for insert and update.
+        /// </summary>
+        /// <param name="model">we have to send the expensescategory master properties with values</param>
+        /// <param name="_db">Database connectoin property for expensescategory master</param>
+        /// <returns>return boolean values. true or false</returns>
         public bool Save(expensescategory_master_model model, DB_expensescategory_master _db)
         {
             bool isSuccess = false;
