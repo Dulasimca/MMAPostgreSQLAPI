@@ -1,58 +1,59 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MMAGlobalBAL.Model;
 using MMAGlobalBAL.ManageDB;
 using MMAGlobalDAL;
 using MMAGlobalDAL.Database.DB_Helper;
 using MMAGlobalAPI.common;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MMAGlobalAPI.Controllers
 {
     [ApiController]
-    public class ExpensesCategoryMasterController : Controller
+    public class Countrymaster : Controller
     {
-        private readonly DB_expensescategory_master _db;
-        public ExpensesCategoryMasterController(EF_MMADatabaseContext eF_DataContext)
+        private readonly DB_country_master _db;
+        public Countrymaster(EF_MMADatabaseContext eF_DataContext)
         {
-            _db = new DB_expensescategory_master(eF_DataContext);
+            _db = new DB_country_master(eF_DataContext);
         }
+
         [HttpPost]
-        [Route("api/[controller]/SaveExpensesCategoryMaster")]
-        public IActionResult Post([FromBody] expensescategory_master_model model)
+        [Route("api/[controller]/SaveCountrymaster")]
+        public IActionResult Post([FromBody] country_master_Model model)
         {
             try
             {
-                Manage_expensescategory_master _Manage = new Manage_expensescategory_master();
+                ManageCountrymaster _Manage = new ManageCountrymaster();
 
                 bool isSuccess = _Manage.Save(model, _db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("SaveExpensesCategoryMaster : " + ex.Message);
+                AuditLog.WriteError("SaveCasetypeMaster : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
+
         [HttpGet]
-        [Route("api/[controller]/GetexpencesmasterDB")]
+        [Route("api/[controller]/GetCountrymaster")]
         public IActionResult Get()
         {
             try
             {
-                Manage_expensescategory_master _Manage = new Manage_expensescategory_master();
-
+                ManageCountrymaster _Manage = new ManageCountrymaster();
                 var result = _Manage.GetData(_db);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("GetTrainingDB : " + ex.Message);
+                AuditLog.WriteError("GetCountrymaster : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
     }
 }
+
