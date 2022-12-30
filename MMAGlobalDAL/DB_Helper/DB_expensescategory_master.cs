@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
-
+using Microsoft.EntityFrameworkCore;
 namespace MMAGlobalDAL.Database.DB_Helper
 {
    public class DB_expensescategory_master
@@ -20,6 +20,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             try
             {
                 _DataContext.expensescategorymaster.Add(expensescategory_master);
+                if (expensescategory_master.sino > 0)
+                {
+                    _DataContext.Entry(expensescategory_master).State = EntityState.Modified;
+                }
                 _DataContext.SaveChanges();
                 isSuccess = true;
             }
