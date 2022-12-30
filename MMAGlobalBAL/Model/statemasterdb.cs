@@ -12,6 +12,7 @@ namespace MMAGlobalBAL.Model
         public string statename { get; set; }
         public int countrycode { get; set; }
         public Boolean flag { get; set; }
+        public string countryname { get; set; }
     }
 }
 
