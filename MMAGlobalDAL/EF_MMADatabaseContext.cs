@@ -34,6 +34,7 @@ namespace MMAGlobalDAL
         public DbSet<statemasterdb> state_master { get; set; } 
         public DbSet<role_master> role_master { get; set; }
         public DbSet<country_master> country_master { get; set; }
+        public DbSet<user_master>user_master { get; set; }
 
 
     }
