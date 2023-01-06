@@ -14,11 +14,11 @@ namespace MMAGlobalBAL.ManageDB
    public class Manage_city_master
     {
         /// <summary>
-        /// 
+        /// This method will store the city master data in to database. we can use same method for insert and update.
         /// </summary>
-        /// <param name="model"></param>
-        /// <param name="_db"></param>
-        /// <returns></returns>
+        /// <param name="model">we have to send the city master properties with values</param>
+        /// <param name="_db">Database connection property for city master</param>
+        /// <returns>return boolean values. true or false</returns>
         public bool Save(city_master_model model, DB_city_master _db)
         {
             bool isSuccess = false;

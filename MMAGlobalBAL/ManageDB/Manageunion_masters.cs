@@ -13,6 +13,12 @@ namespace MMAGlobalBAL.ManageDB
 {
    public class Manageunion_masters
     {
+        /// <summary>
+        /// This method will store the union master data in to database. we can use same method for insert and update.
+        /// </summary>
+        /// <param name="model">we have to send the union master properties with values</param>
+        /// <param name="_db">Database connectoin property for union master</param>
+        /// <returns>return boolean values. true or false</returns>
         public bool Save(union_masters_model model, DB_union_masters _db)
         {
             bool isSuccess = false;
