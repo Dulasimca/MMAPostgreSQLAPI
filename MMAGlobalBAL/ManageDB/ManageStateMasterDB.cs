@@ -17,7 +17,7 @@ namespace MMAGlobalBAL.ManageDB
         /// This method will store the state master data in to database. we can use same method for insert and update.
         /// </summary>
         /// <param name="model">we have to send the state master properties with values</param>
-        /// <param name="_db">Database connectoin property for sub category master</param>
+        /// <param name="_db">Database connectoin property for state master</param>
         /// <returns>return boolean values. true or false</returns>
         public bool Savestatemaster(state_masterdb model, DB_statemaster _db)
         {
