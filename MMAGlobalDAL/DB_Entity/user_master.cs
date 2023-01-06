@@ -16,6 +16,8 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public int id { get; set; }
         public string username_emailid { get; set; }
         public int roleid { get; set; }
+
+        public string password { get; set; }
         public Boolean flag { get; set; }
     }
 }

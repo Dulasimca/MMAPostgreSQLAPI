@@ -8,11 +8,14 @@ using MMAGlobalBAL.Model;
 using MMAGlobalDAL.Database.DB_Helper;
 using MMAGlobalAPI.common;
 using MMAGlobalDAL;
+using CommonUtilities;
 
 namespace MMAGlobalBAL.ManageDB
 {
    public class Manage_user_master
     {
+        Security security = new Security();
+
         /// <summary>
         /// This method will store the user master data in to database. we can use same method for insert and update.
         /// </summary>
@@ -30,6 +33,7 @@ namespace MMAGlobalBAL.ManageDB
                     id = model.id,
                     username_emailid = model.username_emailid,
                     roleid = model.roleid,
+                    password = security.Decryptword(model.password),
                     flag = model.flag,
                     };
                 isSuccess = _db.SaveUserMaster(_user_masters);
@@ -57,6 +61,7 @@ namespace MMAGlobalBAL.ManageDB
                               id = user.id,
                               username_emailid = user.username_emailid,
                               roleid = user.roleid,
+                              password = security.Decryptword (user.password),
                               flag = user.flag,
                               rolename = role.rolename
                           }).ToList();
