@@ -28,13 +28,14 @@ namespace MMAGlobalBAL.ManageDB
             bool isSuccess = false;
             try
             {
-                user_master _user_masters = new user_master
+                user_master _user_masters = new user_master();
+                model.password = security.Encryptword(model.password);
                 {
-                    id = model.id,
-                    username_emailid = model.username_emailid,
-                    roleid = model.roleid,
-                    password = security.Decryptword(model.password),
-                    flag = model.flag,
+                    _user_masters.id = model.id;
+                    _user_masters.username_emailid = model.username_emailid;
+                    _user_masters.roleid = model.roleid;
+                    _user_masters.password = model.password;
+                    _user_masters.flag = model.flag;
                     };
                 isSuccess = _db.SaveUserMaster(_user_masters);
                 return isSuccess;
@@ -51,8 +52,10 @@ namespace MMAGlobalBAL.ManageDB
             try
             {
                 List<user_master_model> _Model = new List<user_master_model>();
+
                 var result = _db.Getdata();
                 var _role = _rolemaster.Getdata();
+
                 _Model = (from user in result
                           join role in _role on user.roleid equals role.roleid
                           select new user_master_model
@@ -61,13 +64,13 @@ namespace MMAGlobalBAL.ManageDB
                               id = user.id,
                               username_emailid = user.username_emailid,
                               roleid = user.roleid,
-                              password = security.Decryptword (user.password),
+                              password = user.password,
                               flag = user.flag,
                               rolename = role.rolename
                           }).ToList();
                
                 return _Model;
-            }
+            }   
             catch (Exception ex)
             {
                 AuditLog.WriteError("ManageUserMaster save method: " + ex.Message);
