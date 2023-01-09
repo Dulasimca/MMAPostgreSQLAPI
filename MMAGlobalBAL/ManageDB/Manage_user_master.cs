@@ -52,25 +52,22 @@ namespace MMAGlobalBAL.ManageDB
             try
             {
                 List<user_master_model> _Model = new List<user_master_model>();
-
                 var result = _db.Getdata();
                 var _role = _rolemaster.Getdata();
-
                 _Model = (from user in result
                           join role in _role on user.roleid equals role.roleid
                           select new user_master_model
-                          {
-                             
+                          {          
                               id = user.id,
                               username_emailid = user.username_emailid,
                               roleid = user.roleid,
-                              password = user.password,
+                              password = security.Decryptword(user.password),
                               flag = user.flag,
                               rolename = role.rolename
                           }).ToList();
                
                 return _Model;
-            }   
+            }
             catch (Exception ex)
             {
                 AuditLog.WriteError("ManageUserMaster save method: " + ex.Message);
