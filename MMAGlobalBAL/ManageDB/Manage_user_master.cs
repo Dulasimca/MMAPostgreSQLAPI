@@ -8,11 +8,14 @@ using MMAGlobalBAL.Model;
 using MMAGlobalDAL.Database.DB_Helper;
 using MMAGlobalAPI.common;
 using MMAGlobalDAL;
+using CommonUtilities;
 
 namespace MMAGlobalBAL.ManageDB
 {
    public class Manage_user_master
     {
+        Security security = new Security();
+
         /// <summary>
         /// This method will store the user master data in to database. we can use same method for insert and update.
         /// </summary>
@@ -25,12 +28,14 @@ namespace MMAGlobalBAL.ManageDB
             bool isSuccess = false;
             try
             {
-                user_master _user_masters = new user_master
+                user_master _user_masters = new user_master();
+                model.password = security.Encryptword(model.password);
                 {
-                    id = model.id,
-                    username_emailid = model.username_emailid,
-                    roleid = model.roleid,
-                    flag = model.flag,
+                    _user_masters.id = model.id;
+                    _user_masters.username_emailid = model.username_emailid;
+                    _user_masters.roleid = model.roleid;
+                    _user_masters.password = model.password;
+                    _user_masters.flag = model.flag;
                     };
                 isSuccess = _db.SaveUserMaster(_user_masters);
                 return isSuccess;
@@ -52,11 +57,11 @@ namespace MMAGlobalBAL.ManageDB
                 _Model = (from user in result
                           join role in _role on user.roleid equals role.roleid
                           select new user_master_model
-                          {
-                             
+                          {          
                               id = user.id,
                               username_emailid = user.username_emailid,
                               roleid = user.roleid,
+                              password = security.Decryptword(user.password),
                               flag = user.flag,
                               rolename = role.rolename
                           }).ToList();
