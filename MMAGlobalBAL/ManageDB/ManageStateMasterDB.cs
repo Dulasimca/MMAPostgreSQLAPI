@@ -30,7 +30,6 @@ namespace MMAGlobalBAL.ManageDB
                     statename = model.statename,
                     countrycode = model.countrycode,
                     flag = model.flag,
-
                 };
                 isSuccess = _db.Savestatemaster(state_master);
                 return isSuccess;
