@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MMAGlobalDAL.Database.DB_Helper
 {
@@ -20,6 +21,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             try
             {
                 _DataContext.union_master.Add(union_masters);
+                if (union_masters.sino > 0)
+                {
+                    _DataContext.Entry(union_masters).State = EntityState.Modified;
+                }
                 _DataContext.SaveChanges();
                 isSuccess = true;
             }
