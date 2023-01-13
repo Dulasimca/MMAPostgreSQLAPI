@@ -21,8 +21,12 @@ namespace MMAGlobalDAL.Database.DB_Helper
             bool isSuccess = false;
             try
             {
+                if(menu_master.menuid==0) /// id increment if menuid =0
+                {
+                    menu_master.id = (_DataContext.menumaster.Max(m => (int?)m.id) ?? 0 )+1;
+                }
                 _DataContext.menumaster.Add(menu_master);
-                if (menu_master.menuid > 0)
+                if (menu_master.menuid > 0) // update the menu if menu id available
                 {
                     _DataContext.Entry(menu_master).State = EntityState.Modified;
                 }

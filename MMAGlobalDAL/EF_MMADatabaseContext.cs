@@ -33,6 +33,8 @@ namespace MMAGlobalDAL
         public DbSet<country_master> country_master { get; set; }
         public DbSet<user_master>user_master { get; set; }
         public DbSet<contacts_list> contactslist { get; set; }
+        public DbSet<registration>registration { get; set; }
+
 
 
     }
