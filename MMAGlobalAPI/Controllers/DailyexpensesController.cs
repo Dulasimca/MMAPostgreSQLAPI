@@ -12,9 +12,11 @@ namespace MMAGlobalAPI.Controllers
     public class DailyexpensesController : Controller
     {
         private readonly DB_daily_expenses _db;
+        private readonly DB_expensescategory_master _dailyexpenses;
         public DailyexpensesController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_daily_expenses(eF_DataContext);
+            _dailyexpenses = new DB_expensescategory_master(eF_DataContext);
         }
 
         [HttpPost]
@@ -42,7 +44,7 @@ namespace MMAGlobalAPI.Controllers
             try
             {
                 Manage_daily_expenses _Manage = new Manage_daily_expenses();
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db, _dailyexpenses);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
