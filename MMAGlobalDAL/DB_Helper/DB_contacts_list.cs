@@ -15,10 +15,6 @@ namespace MMAGlobalDAL.Database.DB_Helper
         {
             _DataContext = DataContext;
         }
-        public DB_contacts_list()
-        {
-
-        }
 
         public bool SaveContactlist(contacts_list contactlists)
 
