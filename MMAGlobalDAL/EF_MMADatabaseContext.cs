@@ -40,7 +40,10 @@ namespace MMAGlobalDAL
         public DbSet<project_creation> projectcreation { get; set; }
 
         public DbSet<fund_utilization> fund_utilization { get; set; }
+        public DbSet<lodging_info> lodging_info { get; set; }
 
+        public DbSet<transport_info> transport_info { get; set; }
+         
 
 
     }
