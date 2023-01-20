@@ -41,6 +41,8 @@ namespace MMAGlobalDAL
 
         public DbSet<fund_utilization> fund_utilization { get; set; }
 
+        public DbSet<shooting_schedule> shooting_schedule { get; set; }
+
 
 
     }
