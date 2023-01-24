@@ -5,28 +5,24 @@ using MMAGlobalBAL.ManageDB;
 using MMAGlobalDAL;
 using MMAGlobalDAL.Database.DB_Helper;
 using MMAGlobalAPI.common;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace MMAGlobalAPI.Controllers
 {
     [ApiController]
-    public class CountrymasterContoller : Controller
+    public class LodginginfoController : Controller
     {
-        private readonly DB_country_master _db;
-        public CountrymasterContoller(EF_MMADatabaseContext eF_DataContext)
+        private readonly DB_lodging_info _db;
+        public LodginginfoController(EF_MMADatabaseContext eF_DataContext)
         {
-            _db = new DB_country_master(eF_DataContext);
+            _db = new DB_lodging_info(eF_DataContext);
         }
 
         [HttpPost]
-        [Route("api/[controller]/SaveCountrymaster")]
-        public IActionResult Post([FromBody] country_master_Model model)
+        [Route("api/[controller]/SaveLodginginfo")]
+        public IActionResult Post([FromBody] lodging_info_Model model)
         {
             try
             {
-                ManageCountrymaster _Manage = new ManageCountrymaster();
+                Manage_lodging_info _Manage = new Manage_lodging_info();
 
                 bool isSuccess = _Manage.Save(model, _db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
@@ -39,18 +35,18 @@ namespace MMAGlobalAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/GetCountrymaster")]
+        [Route("api/[controller]/Getlodginginfo")]
         public IActionResult Get()
         {
             try
             {
-                ManageCountrymaster _Manage = new ManageCountrymaster();
+                Manage_lodging_info _Manage = new Manage_lodging_info();
                 var result = _Manage.GetData(_db);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("GetCountrymaster : " + ex.Message);
+                AuditLog.WriteError("Getlodginginfo : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }

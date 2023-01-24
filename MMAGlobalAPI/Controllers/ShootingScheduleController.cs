@@ -9,49 +9,48 @@ using MMAGlobalAPI.common;
 namespace MMAGlobalAPI.Controllers
 {
     [ApiController]
-    public class DailyexpensesController : Controller
+    public class ShootingScheduleController : Controller
     {
-        private readonly DB_daily_expenses _db;
-        private readonly DB_expensescategory_master _dailyexpenses;
-        public DailyexpensesController(EF_MMADatabaseContext eF_DataContext)
+        private readonly DB_shooting_schedule _db;
+        public ShootingScheduleController(EF_MMADatabaseContext eF_DataContext)
         {
-            _db = new DB_daily_expenses(eF_DataContext);
-            _dailyexpenses = new DB_expensescategory_master(eF_DataContext);
+            _db = new DB_shooting_schedule(eF_DataContext);
         }
 
         [HttpPost]
-        [Route("api/[controller]/SaveDailyexpenses")]
-        public IActionResult Post([FromBody] daily_expenses_Model model)
+        [Route("api/[controller]/Saveshooting_schedule")]
+        public IActionResult Post([FromBody] shooting_schedule_model model)
         {
             try
             {
-                Manage_daily_expenses _Manage = new Manage_daily_expenses();
+                Manage_shooting_schedule _Manage = new Manage_shooting_schedule();
 
                 bool isSuccess = _Manage.Save(model, _db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("SaveDailyexpenses : " + ex.Message);
+                AuditLog.WriteError("SaveShooting_Schedule : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
-
         [HttpGet]
-        [Route("api/[controller]/GetDailyexpenses")]
+        [Route("api/[controller]/Getshooting_schedule")]
         public IActionResult Get()
         {
             try
             {
-                Manage_daily_expenses _Manage = new Manage_daily_expenses();
-                var result = _Manage.GetData(_db, _dailyexpenses);
+                Manage_shooting_schedule _Manage = new Manage_shooting_schedule();
+
+                var result = _Manage.GetData(_db);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("Getdailyexpenses : " + ex.Message);
+                AuditLog.WriteError("Getshootingschedule : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
+
     }
 }

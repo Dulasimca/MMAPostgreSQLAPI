@@ -30,7 +30,6 @@ namespace MMAGlobalBAL.ManageDB
                     sino = model.sino,
                     categoryname = model.categoryname,
                     flag = model.flag
-
                 };
                 isSuccess = _db.SaveSubCategory(sub_category);
 

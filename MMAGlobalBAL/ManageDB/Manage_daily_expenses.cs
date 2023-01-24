@@ -46,13 +46,17 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<daily_expenses_Model> GetData(DB_daily_expenses _db)
+        public List<daily_expenses_Model> GetData(DB_daily_expenses _db, DB_expensescategory_master _dailyexpenses)
         {
             try
             {
                 List<daily_expenses_Model> _Model = new List<daily_expenses_Model>();
                 var restul = _db.Getdata();
-                restul.ForEach(model => _Model.Add(new daily_expenses_Model()
+                var _expenses = _dailyexpenses.Getdata();
+                _Model = (from model in restul
+                          join expenses_category in _expenses on model.expenses_category equals expenses_category.sino
+                          select new daily_expenses_Model
+                //restul.ForEach(model => _Model.Add(new daily_expenses_Model()
                 {
 
                     slno = model.slno,
@@ -62,8 +66,10 @@ namespace MMAGlobalBAL.ManageDB
                     invoice_number = model.invoice_number,
                     expenses_category = model.expenses_category,
                     amount = model.amount,
-                    created_date = model.created_date
-                }));
+                    created_date = model.created_date,
+                    name=expenses_category.name
+
+                }).ToList();
 
                 return _Model;
             }
