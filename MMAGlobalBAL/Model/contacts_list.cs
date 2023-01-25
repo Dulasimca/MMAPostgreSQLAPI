@@ -34,5 +34,7 @@ namespace MMAGlobalBAL.Model
         public string unionname { get; set; }
         public string categoryname { get; set; }
 
+       
+
     }
 }

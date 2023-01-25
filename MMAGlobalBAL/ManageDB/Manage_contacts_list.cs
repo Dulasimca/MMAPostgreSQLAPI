@@ -50,7 +50,7 @@ namespace MMAGlobalBAL.ManageDB
             return isSuccess;
         }
   public List<contacts_list_model> GetData(DB_contacts_list _db, DB_country_master _Countrymaster, DB_statemaster _Statemaster, DB_city_master _City_Master, DB_role_master _rolemaster
-      , DB_union_masters _Union_Masters, DB_maincategorymaster _Maincategorymaster)
+      , DB_union_masters _Union_Masters, DB_maincategorymaster _Maincategorymaster )
         {
             try
             {
@@ -62,6 +62,7 @@ namespace MMAGlobalBAL.ManageDB
                 var _role = _rolemaster.Getdata();
                 var _union = _Union_Masters.Getdata();
                 var _maincategory = _Maincategorymaster.Getdata();
+               
                 _Model = (from contactslist in restul
                           join countrycode in _country on contactslist.countrycode equals countrycode.countrycode
                           join statecode in _state on contactslist.statecode equals statecode.statecode
@@ -69,6 +70,7 @@ namespace MMAGlobalBAL.ManageDB
                           join roleid in _role on contactslist.roleid equals roleid.roleid
                           join unionid in _union on contactslist.unionid equals unionid.sino
                           join maincategory_id in _maincategory on contactslist.maincategory_id equals maincategory_id.sino
+                         
                           select new contacts_list_model
                           //  restul.ForEach(model => _Model.Add(new contacts_list_model()
                           {
@@ -96,7 +98,8 @@ namespace MMAGlobalBAL.ManageDB
                     cityname = citycode.cityname,
                     rolename= roleid.rolename,
                     unionname = unionid.unionname,
-                    categoryname=maincategory_id.categoryname
+                    categoryname=maincategory_id.categoryname,
+                    
 
                           }).ToList();
 
