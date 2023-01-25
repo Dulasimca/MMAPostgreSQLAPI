@@ -34,6 +34,11 @@ namespace MMAGlobalBAL.Model
 
         public Boolean flag { get; set; }
 
+        public string rolename { get; set; }
+
+        public string categoryname { get; set; }
+
+
     }
 }
 

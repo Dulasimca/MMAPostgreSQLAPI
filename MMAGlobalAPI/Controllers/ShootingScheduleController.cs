@@ -12,9 +12,14 @@ namespace MMAGlobalAPI.Controllers
     public class ShootingScheduleController : Controller
     {
         private readonly DB_shooting_schedule _db;
+        private readonly DB_role_master _role;
+        private readonly DB_maincategorymaster _maincategory;
         public ShootingScheduleController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_shooting_schedule(eF_DataContext);
+            _role = new DB_role_master(eF_DataContext);
+            _maincategory = new DB_maincategorymaster(eF_DataContext);
+
         }
 
         [HttpPost]
@@ -42,7 +47,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_shooting_schedule _Manage = new Manage_shooting_schedule();
 
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db,_role, _maincategory);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
