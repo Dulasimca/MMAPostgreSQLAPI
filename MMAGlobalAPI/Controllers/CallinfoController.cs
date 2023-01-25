@@ -1,57 +1,61 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using MMAGlobalBAL.Model;
 using MMAGlobalBAL.ManageDB;
 using MMAGlobalDAL;
 using MMAGlobalDAL.Database.DB_Helper;
 using MMAGlobalAPI.common;
 
+
 namespace MMAGlobalAPI.Controllers
 {
     [ApiController]
-    public class DailyexpensesController : Controller
+    public class CallinfoController : Controller
     {
-        private readonly DB_daily_expenses _db;
-        private readonly DB_expensescategory_master _dailyexpenses;
-        public DailyexpensesController(EF_MMADatabaseContext eF_DataContext)
+        private readonly DB_call_info _db;
+        public CallinfoController(EF_MMADatabaseContext eF_DataContext)
         {
-            _db = new DB_daily_expenses(eF_DataContext);
-            _dailyexpenses = new DB_expensescategory_master(eF_DataContext);
+            _db = new DB_call_info(eF_DataContext);
         }
 
         [HttpPost]
-        [Route("api/[controller]/SaveDailyexpenses")]
-        public IActionResult Post([FromBody] daily_expenses_Model model)
+        [Route("api/[controller]/SaveCallinfo")]
+        public IActionResult Post([FromBody] call_info_Model model)
         {
             try
             {
-                Manage_daily_expenses _Manage = new Manage_daily_expenses();
+                Manage_call_info _Manage = new Manage_call_info();
 
                 bool isSuccess = _Manage.Save(model, _db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("SaveDailyexpenses : " + ex.Message);
+                AuditLog.WriteError("SaveCasetypeMaster : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
 
         [HttpGet]
-        [Route("api/[controller]/GetDailyexpenses")]
+        [Route("api/[controller]/GetCallinfo")]
         public IActionResult Get()
         {
             try
             {
-                Manage_daily_expenses _Manage = new Manage_daily_expenses();
-                var result = _Manage.GetData(_db, _dailyexpenses);
+                Manage_call_info _Manage = new Manage_call_info();
+                var result = _Manage.GetData(_db);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("Getdailyexpenses : " + ex.Message);
+                AuditLog.WriteError("GetCallinfo : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
     }
 }
+

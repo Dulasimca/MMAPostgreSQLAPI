@@ -8,24 +8,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MMAGlobalDAL.Database.DB_Helper
 {
-   public class DB_contacts_list
+    public class DB_location_info
     {
         private EF_MMADatabaseContext _DataContext;
-        public DB_contacts_list(EF_MMADatabaseContext DataContext)
+        public DB_location_info(EF_MMADatabaseContext DataContext)
         {
             _DataContext = DataContext;
         }
-
-        public bool SaveContactlist(contacts_list contactlists)
-
+        public bool SaveLocationInfo(location_info _location_info)
         {
             bool isSuccess = false;
             try
             {
-                _DataContext.contactslist.Add(contactlists);
-                if (contactlists.slno > 0)
+                _DataContext.locationinfo.Add(_location_info);
+                if (_location_info.slno > 0)
                 {
-                    _DataContext.Entry(contactlists).State = EntityState.Modified;
+                    _DataContext.Entry(_location_info).State = EntityState.Modified;
                 }
                 _DataContext.SaveChanges();
                 isSuccess = true;
@@ -36,10 +34,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             }
             return isSuccess;
         }
-
-        public List<contacts_list> Getdata()
+        public List<location_info> Getdata()
         {
-            return _DataContext.contactslist.ToList();
+            return _DataContext.locationinfo.ToList();
         }
+
     }
 }

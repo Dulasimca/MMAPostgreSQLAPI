@@ -37,10 +37,32 @@ namespace MMAGlobalDAL
         public DbSet<daily_expenses>daily_expenses { get; set; }
 
         public DbSet<contacts_list> contactslist { get; set; }
+
        
+
+
         public DbSet<project_creation> projectcreation { get; set; }
 
         public DbSet<fund_utilization> fund_utilization { get; set; }
+
+
+
+
+        public DbSet<shooting_schedule> shooting_schedule { get; set; }
+
+
+
+        public DbSet<transport_info> transport_info { get; set; }
+         
+
+        public DbSet<lodging_info>lodging_info { get; set; }
+        
+        public DbSet<call_info> call_info { get; set; }
+
+        public DbSet<location_info> locationinfo { get; set; }
+     
+
+
 
 
 

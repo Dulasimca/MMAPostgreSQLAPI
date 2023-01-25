@@ -18,19 +18,23 @@ namespace MMAGlobalBAL.Model
         public string phonenumber { get; set; }
         public string whatsappnumber { get; set; }
         public string email_id { get; set; }
-        public int country_id { get; set; }
-        public int state_id { get; set; }
-        public int city_id { get; set; }
+        public int countrycode { get; set; }
+        public int statecode { get; set; }
+        public int citycode { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
         public string pincode { get; set; }
         public Boolean isunion { get; set; }
         public int unionid { get; set; }
         public Boolean flag { get; set; }
+        public string countryname { get; set; }
+        public string statename { get; set; }
+        public string cityname { get; set; }
+        public string rolename { get; set; }
+        public string unionname { get; set; }
+        public string categoryname { get; set; }
 
-
-
-
+       
 
     }
 }

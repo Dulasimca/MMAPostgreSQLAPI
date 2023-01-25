@@ -16,5 +16,6 @@ namespace MMAGlobalBAL.Model
         public int expenses_category { get; set; }
         public int amount{ get; set; }
         public DateTime created_date { get; set; }
+        public string name { get; set; }
     }
 }

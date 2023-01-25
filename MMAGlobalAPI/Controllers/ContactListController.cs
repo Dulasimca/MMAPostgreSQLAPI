@@ -17,9 +17,24 @@ namespace MMAGlobalAPI.Controllers
     {
 
         private readonly DB_contacts_list _db;
+        private readonly DB_country_master _country;
+        private readonly DB_statemaster _state;
+        private readonly DB_city_master _city;
+        private readonly DB_role_master _role;
+        private readonly DB_union_masters _union;
+        private readonly DB_maincategorymaster _maincategory;
+       
+
         public ContactListController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_contacts_list(eF_DataContext);
+            _country = new DB_country_master(eF_DataContext);
+            _state = new DB_statemaster(eF_DataContext);
+            _city = new DB_city_master(eF_DataContext);
+            _role = new DB_role_master(eF_DataContext);
+            _union = new DB_union_masters(eF_DataContext);
+            _maincategory = new DB_maincategorymaster(eF_DataContext);
+    
         }
 
         [HttpPost]
@@ -47,7 +62,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_contacts_list _Manage = new Manage_contacts_list();
 
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db,_country ,_state, _city,_role,_union, _maincategory);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
