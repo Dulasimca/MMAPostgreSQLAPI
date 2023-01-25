@@ -33,7 +33,7 @@ namespace MMAGlobalAPI.Controllers
             }
             catch (Exception ex)
             {
-                AuditLog.WriteError("SaveCasetypeMaster : " + ex.Message);
+                AuditLog.WriteError("SaveCountrymaster : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
             }
         }
