@@ -43,7 +43,7 @@ namespace MMAGlobalDAL
         public DbSet<lodging_info> lodging_info { get; set; }
 
         public DbSet<transport_info> transport_info { get; set; }
-         
+        public DbSet<call_info> call_info { get; set; }
 
 
     }
