@@ -36,7 +36,7 @@ namespace MMAGlobalBAL.ManageDB
                     _user_masters.roleid = model.roleid;
                     _user_masters.password = model.password;
                     _user_masters.flag = model.flag;
-                    };
+                };
                 isSuccess = _db.SaveUserMaster(_user_masters);
                 return isSuccess;
             }
@@ -74,6 +74,24 @@ namespace MMAGlobalBAL.ManageDB
                 return null;
             }
 
+        }
+        public user_master_model GetUserMasterByName(DB_user_master _db,string username)
+        {
+            user_master_model response = new user_master_model();
+            var _dataFromDB = _db.GetUserMasterByName(username);
+            if (_dataFromDB != null)
+            {
+                response.id = _dataFromDB.id;
+                response.username_emailid = _dataFromDB.username_emailid;
+                response.roleid = _dataFromDB.roleid;
+                response.password = _dataFromDB.password;
+                response.flag = _dataFromDB.flag;
+            }
+            else
+            {
+                response = null;
+            }
+            return response;
         }
     }
 }
