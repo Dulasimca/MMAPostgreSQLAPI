@@ -38,6 +38,9 @@ namespace MMAGlobalDAL.Database.DB_Helper
         {
             return _DataContext.user_master.ToList();
         }
-
+        public user_master GetUserMasterByName(string username)
+        {
+            return _DataContext.user_master.Where(a => a.username_emailid.ToLower() == username.ToLower()).FirstOrDefault();
+        }
     }
 }
