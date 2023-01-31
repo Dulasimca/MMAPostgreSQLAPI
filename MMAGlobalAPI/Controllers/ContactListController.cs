@@ -23,6 +23,7 @@ namespace MMAGlobalAPI.Controllers
         private readonly DB_role_master _role;
         private readonly DB_union_masters _union;
         private readonly DB_maincategorymaster _maincategory;
+       
 
         public ContactListController(EF_MMADatabaseContext eF_DataContext)
         {
@@ -33,6 +34,7 @@ namespace MMAGlobalAPI.Controllers
             _role = new DB_role_master(eF_DataContext);
             _union = new DB_union_masters(eF_DataContext);
             _maincategory = new DB_maincategorymaster(eF_DataContext);
+    
         }
 
         [HttpPost]

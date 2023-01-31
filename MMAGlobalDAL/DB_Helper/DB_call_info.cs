@@ -5,25 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using MMAGlobalDAL.Database.DB_Entity;
 using Microsoft.EntityFrameworkCore;
-
 namespace MMAGlobalDAL.Database.DB_Helper
 {
-   public class DB_user_master
+    public class DB_call_info
     {
+
         private EF_MMADatabaseContext _DataContext;
-        public DB_user_master(EF_MMADatabaseContext DataContext)
+        public DB_call_info(EF_MMADatabaseContext DataContext)
         {
             _DataContext = DataContext;
         }
-        public bool SaveUserMaster(user_master user_master)
+        public bool SaveCallinfo(call_info call_info)
         {
             bool isSuccess = false;
             try
             {
-                _DataContext.user_master.Add(user_master);
-                if (user_master.id > 0)
+
+                _DataContext.call_info.Add(call_info);
+                if (call_info.slno > 0)
                 {
-                    _DataContext.Entry(user_master).State = EntityState.Modified;
+                    _DataContext.Entry(call_info).State = EntityState.Modified;
                 }
                 _DataContext.SaveChanges();
                 isSuccess = true;
@@ -34,13 +35,11 @@ namespace MMAGlobalDAL.Database.DB_Helper
             }
             return isSuccess;
         }
-        public List<user_master> Getdata()
+        public List<call_info> Getdata()
         {
-            return _DataContext.user_master.ToList();
+            return _DataContext.call_info.ToList();
         }
-        public user_master GetUserMasterByName(string username)
-        {
-            return _DataContext.user_master.Where(a => a.username_emailid.ToLower() == username.ToLower()).FirstOrDefault();
-        }
+
     }
 }
+

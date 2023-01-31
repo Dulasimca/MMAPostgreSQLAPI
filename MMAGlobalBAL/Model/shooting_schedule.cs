@@ -20,7 +20,7 @@ namespace MMAGlobalBAL.Model
 
         public int schedule_day { get; set; }
         public DateTime schedule_date { get; set; }
-        public Boolean day_night { get; set; }
+        public string day_night { get; set; }
 
         public string interior_exterior { get; set; }
 
@@ -32,7 +32,12 @@ namespace MMAGlobalBAL.Model
 
         public DateTime created_date { get; set; }
 
-        public Boolean flag { get; set; }
+        public string rolename { get; set; }
+
+        public string categoryname { get; set; }
+
+        public string name { get; set; }
+
 
     }
 }

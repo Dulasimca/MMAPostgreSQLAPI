@@ -34,5 +34,6 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public Boolean flag { get; set; }
 
 
+
     }
 }
