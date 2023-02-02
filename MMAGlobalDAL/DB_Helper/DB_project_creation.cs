@@ -24,7 +24,7 @@ namespace MMAGlobalDAL.Database.DB_Helper
             {
                 // trainingdb.id = (_DataContext.trainingdb.Max(u => u.id)) + 1;
                 _DataContext.projectcreation.Add(projectcreation);
-                if (projectcreation.slno > 0)
+                if (projectcreation.project_id > 0)
                 {
                     _DataContext.Entry(projectcreation).State = EntityState.Modified;
                 }
