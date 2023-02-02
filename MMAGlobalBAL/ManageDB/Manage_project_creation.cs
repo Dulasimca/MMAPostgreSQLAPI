@@ -19,11 +19,12 @@ namespace MMAGlobalBAL.ManageDB
             {
                 project_creation project_creation = new project_creation
                 {
-                    slno = model.slno,
+                    project_id = model.project_id,
                     project_name = model.project_name,
                     duration_in_days = model.duration_in_days,
                     budget = model.budget,
                     project_start_date = model.project_start_date,
+                    production_house_name=model.production_house_name,
                     created_date = model.created_date,
                     flag = model.flag
 
@@ -49,11 +50,12 @@ namespace MMAGlobalBAL.ManageDB
                 var restul = _db.Getdata();
                 restul.ForEach(model => _Model.Add(new project_creation_model()
                 {
-                    slno = model.slno,
+                    project_id = model.project_id,
                     project_name = model.project_name,
                     duration_in_days = model.duration_in_days,
                     budget = model.budget,
                     project_start_date = model.project_start_date,
+                    production_house_name=model.production_house_name,
                     created_date = model.created_date,
                     flag = model.flag
                 }));
