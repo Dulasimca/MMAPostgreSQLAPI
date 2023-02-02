@@ -9,6 +9,8 @@ namespace MMAGlobalBAL.Model
     public class fund_utilization_model
     {
         public int slno { get; set; }
+        public int project_name { get; set; }
+        public int budget_amount { get; set; }
         public int person_name { get; set; }
         public string payment_by { get; set; }
         public int amount { get; set; }

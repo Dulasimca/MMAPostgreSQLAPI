@@ -70,7 +70,7 @@ namespace MMAGlobalBAL.ManageDB
                           join roleid in _role on contactslist.roleid equals roleid.roleid
                           join unionid in _union on contactslist.unionid equals unionid.sino
                           join maincategory_id in _maincategory on contactslist.maincategory_id equals maincategory_id.sino
-                         
+                                           
                           select new contacts_list_model
                           //  restul.ForEach(model => _Model.Add(new contacts_list_model()
                           {
@@ -99,7 +99,7 @@ namespace MMAGlobalBAL.ManageDB
                     rolename= roleid.rolename,
                     unionname = unionid.unionname,
                     categoryname=maincategory_id.categoryname,
-                    
+                  
 
                           }).ToList();
 

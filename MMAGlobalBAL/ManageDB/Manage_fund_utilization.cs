@@ -9,7 +9,7 @@ using MMAGlobalDAL.Database.DB_Helper;
 using MMAGlobalAPI.common;
 
 namespace MMAGlobalBAL.ManageDB
-{ 
+{
     public class Manage_fund_utilization
     {
 
@@ -18,9 +18,11 @@ namespace MMAGlobalBAL.ManageDB
             bool isSuccess = false;
             try
             {
-                   fund_utilization fund_utilization = new fund_utilization
-                     {
+                fund_utilization fund_utilization = new fund_utilization
+                {
                     slno = model.slno,
+                    project_name = model.project_name,
+                    budget_amount = model.budget_amount,
                     person_name = model.person_name,
                     payment_by = model.payment_by,
                     amount = model.amount,
@@ -51,6 +53,8 @@ namespace MMAGlobalBAL.ManageDB
                 restul.ForEach(model => _Model.Add(new fund_utilization_model()
                 {
                     slno = model.slno,
+                    project_name = model.project_name,
+                    budget_amount = model.budget_amount,
                     person_name = model.person_name,
                     payment_by = model.payment_by,
                     amount = model.amount,
@@ -68,6 +72,8 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
+
+       
 
     }
 }
