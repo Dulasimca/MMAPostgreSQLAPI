@@ -54,7 +54,7 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<location_info_model> GetData(DB_location_info _db, DB_country_master _Countrymaster, DB_statemaster _Statemaster, DB_city_master _City_Master)
+        public List<location_info_model> GetData(DB_location_info _db, DB_country_master _Countrymaster, DB_statemaster _Statemaster, DB_city_master _City_Master, DB_contacts_list _contacts_list)
         {
             try
             {
@@ -63,11 +63,13 @@ namespace MMAGlobalBAL.ManageDB
                 var _country = _Countrymaster.Getdata();
                 var _state = _Statemaster.Getdata();
                 var _city = _City_Master.Getdata();
+                var _contact = _contacts_list.Getdata();
                 //  restul.ForEach(model => _Model.Add(new location_info_model()
                 _Model = (from location in restul
                           join country in _country on location.country_id equals country.countrycode
                           join state in _state on location.state_id equals state.statecode
                           join city in _city on location.city_id equals city.citycode
+                          join contacts in _contact on location.location_managerid equals contacts.slno
                           select new location_info_model
                           {
                               slno = location.slno,
@@ -87,7 +89,9 @@ namespace MMAGlobalBAL.ManageDB
                               flag = location.flag,
                               countryname = country.countryname,
                               statename = state.statename,
-                              cityname = city.cityname
+                              cityname = city.cityname,
+                              first_name = contacts.first_name
+
                           }).ToList();
                 return _Model;
             }

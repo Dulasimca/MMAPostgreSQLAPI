@@ -15,17 +15,12 @@ namespace MMAGlobalDAL.Database.DB_Helper
         {
             _DataContext = DataContext;
         }
-        public DB_transport_info()
-        {
-
-        }
-
         public bool Savetransportinfo(transport_info transport_info)
-
         {
             bool isSuccess = false;
             try
             {
+
                 _DataContext.transport_info.Add(transport_info);
                 if (transport_info.slno > 0)
                 {
@@ -40,11 +35,10 @@ namespace MMAGlobalDAL.Database.DB_Helper
             }
             return isSuccess;
         }
-
         public List<transport_info> Getdata()
         {
             return _DataContext.transport_info.ToList();
         }
+
     }
 }
-

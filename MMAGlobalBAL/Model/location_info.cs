@@ -27,5 +27,7 @@ namespace MMAGlobalBAL.Model
         public string statename { get; set; }
         public string cityname { get; set; }
 
+        public string first_name { get; set; }
+
     }
 }

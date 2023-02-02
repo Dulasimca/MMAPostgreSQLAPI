@@ -13,7 +13,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int slno { get; set; }
+        public int production_id { get; set; }
         public string production_house_name { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }

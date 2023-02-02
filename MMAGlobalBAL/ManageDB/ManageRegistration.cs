@@ -26,7 +26,7 @@ namespace MMAGlobalBAL.ManageDB
             {
                 registration db = new registration
                 {
-                    slno = model.slno,
+                    production_id = model.production_id,
                     production_house_name = model.production_house_name,
                     first_name = model.first_name,
                     last_name = model.last_name,
@@ -69,7 +69,7 @@ namespace MMAGlobalBAL.ManageDB
                           select new registration_Model
                 //restul.ForEach(model => _Model.Add(new registration_Model()
                 {
-                    slno = registration.slno,
+                    production_id = registration.production_id,
                     production_house_name = registration.production_house_name,
                     first_name = registration.first_name,
                     last_name = registration.last_name,

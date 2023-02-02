@@ -25,7 +25,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
 
         public int schedule_day { get; set; }
         public DateTime schedule_date { get; set; }
-        public Boolean day_night { get; set; }
+        public string day_night { get; set; }
 
         public string interior_exterior { get; set; }
 
@@ -37,7 +37,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
 
         public DateTime created_date { get; set; }
 
-        public Boolean flag { get; set; }
+        public string name { get; set; }
 
     }
 }

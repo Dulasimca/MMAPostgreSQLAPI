@@ -34,8 +34,7 @@ namespace MMAGlobalBAL.ManageDB
                     characters = model.characters,
                     status = model.status,
                     created_date = model.created_date,
-                    flag = model.flag,
-
+                    name = model.name,
 
                 };
                 isSuccess = _db.Saveshootingschedule(shooting_schedule);
@@ -83,7 +82,7 @@ namespace MMAGlobalBAL.ManageDB
                               characters = shooting.characters,
                               status = shooting.status,
                               created_date = shooting.created_date,
-                              flag = shooting.flag,
+                              name = shooting.name,
                               rolename = role_id.rolename,
                               categoryname=main_category_id.categoryname,
                           }).ToList();
