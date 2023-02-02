@@ -16,7 +16,7 @@ namespace MMAGlobalBAL.Model
 
         public DateTime project_start_date { get; set; }
 
-        public string production_house_name { get; set; }
+        public string production_id { get; set; }
 
         public DateTime created_date { get; set; }
 

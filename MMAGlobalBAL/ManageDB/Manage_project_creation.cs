@@ -24,7 +24,7 @@ namespace MMAGlobalBAL.ManageDB
                     duration_in_days = model.duration_in_days,
                     budget = model.budget,
                     project_start_date = model.project_start_date,
-                    production_house_name=model.production_house_name,
+                    production_id = model.production_id,
                     created_date = model.created_date,
                     flag = model.flag
 
@@ -55,7 +55,7 @@ namespace MMAGlobalBAL.ManageDB
                     duration_in_days = model.duration_in_days,
                     budget = model.budget,
                     project_start_date = model.project_start_date,
-                    production_house_name=model.production_house_name,
+                    production_id = model.production_id,
                     created_date = model.created_date,
                     flag = model.flag
                 }));
