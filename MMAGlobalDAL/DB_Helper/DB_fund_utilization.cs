@@ -41,5 +41,7 @@ namespace MMAGlobalDAL.Database.DB_Helper
             return _DataContext.fund_utilization.ToList();
         }
 
+       
+
     }
 }
