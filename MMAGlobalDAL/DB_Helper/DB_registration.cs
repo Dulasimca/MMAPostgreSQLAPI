@@ -23,7 +23,7 @@ namespace MMAGlobalDAL.Database.DB_Helper
             {
                 // trainingdb.id = (_DataContext.trainingdb.Max(u => u.id)) + 1;
                 _DataContext.registration.Add(registration);
-                if (registration.slno > 0)
+                if (registration.production_id > 0)
                 {
                     _DataContext.Entry(registration).State = EntityState.Modified;
                 }
