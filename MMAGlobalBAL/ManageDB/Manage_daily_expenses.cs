@@ -46,15 +46,17 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<daily_expenses_Model> GetData(DB_daily_expenses _db, DB_expensescategory_master _dailyexpenses)
+        public List<daily_expenses_Model> GetData(DB_daily_expenses _db, DB_expensescategory_master _dailyexpenses, DB_projectcreation _dailyprojectname)
         {
             try
             {
                 List<daily_expenses_Model> _Model = new List<daily_expenses_Model>();
                 var restul = _db.Getdata();
                 var _expenses = _dailyexpenses.Getdata();
+                var _projectname =  _dailyprojectname.Getdata();
                 _Model = (from model in restul
                           join expenses_category in _expenses on model.expenses_category equals expenses_category.sino
+                          join projectname in _projectname on model.project_name equals projectname.project_id
                           select new daily_expenses_Model
                 //restul.ForEach(model => _Model.Add(new daily_expenses_Model()
                 {
@@ -67,9 +69,10 @@ namespace MMAGlobalBAL.ManageDB
                     expenses_category = model.expenses_category,
                     amount = model.amount,
                     created_date = model.created_date,
-                    name=expenses_category.name
+                    name=expenses_category.name,
+                     projectname = projectname.project_name
 
-                }).ToList();
+                          }).ToList();
 
                 return _Model;
             }
