@@ -12,9 +12,12 @@ namespace MMAGlobalAPI.Controllers
     public class Fund_UtilizationController : Controller
     {
         private readonly DB_fund_utilization _db;
+        private readonly DB_contacts_list _contactslist;
         public Fund_UtilizationController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_fund_utilization(eF_DataContext);
+            _contactslist = new DB_contacts_list(eF_DataContext);
+
         }
 
         [HttpPost]
@@ -42,7 +45,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_fund_utilization _Manage = new Manage_fund_utilization();
 
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db,_contactslist);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

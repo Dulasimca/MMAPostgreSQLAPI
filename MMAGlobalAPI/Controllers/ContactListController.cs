@@ -23,7 +23,8 @@ namespace MMAGlobalAPI.Controllers
         private readonly DB_role_master _role;
         private readonly DB_union_masters _union;
         private readonly DB_maincategorymaster _maincategory;
-       
+        private readonly DB_subcategorymasterdb _subcategory;
+
 
         public ContactListController(EF_MMADatabaseContext eF_DataContext)
         {
@@ -34,7 +35,8 @@ namespace MMAGlobalAPI.Controllers
             _role = new DB_role_master(eF_DataContext);
             _union = new DB_union_masters(eF_DataContext);
             _maincategory = new DB_maincategorymaster(eF_DataContext);
-    
+            _subcategory = new DB_subcategorymasterdb(eF_DataContext);
+
         }
 
         [HttpPost]
@@ -62,7 +64,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_contacts_list _Manage = new Manage_contacts_list();
 
-                var result = _Manage.GetData(_db,_country ,_state, _city,_role,_union, _maincategory);
+                var result = _Manage.GetData(_db,_country ,_state, _city,_role,_union, _maincategory,_subcategory);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
