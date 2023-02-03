@@ -32,9 +32,11 @@ namespace MMAGlobalBAL.Model
         public string cityname { get; set; }
         public string rolename { get; set; }
         public string unionname { get; set; }
-        public string categoryname { get; set; }
+        public string maincategoryname { get; set; }
+        public string subcategoryname { get; set; }
 
-       
+
+
 
     }
 }

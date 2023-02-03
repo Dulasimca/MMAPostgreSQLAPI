@@ -15,9 +15,10 @@ namespace MMAGlobalBAL.Model
         public string payment_by { get; set; }
         public int amount { get; set; }
         public string day_or_call { get; set; }
-
         public string total_amount { get; set; }
         public DateTime created_date { get; set; }
+        public string first_name { get; set; }
+         
     }
 }
 
