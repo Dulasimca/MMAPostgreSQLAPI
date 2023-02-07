@@ -19,27 +19,44 @@ namespace MMAGlobalBAL.ManageDB
         /// <param name="model">we have to send the callinfo properties with values</param>
         /// <param name="_db">Database connectoin property for callinfo</param>
         /// <returns>return boolean values. true or false</returns>
-        public bool Save(call_info_Model model, DB_call_info _db)
+        public bool Save(callinfodetails_Model model, DB_call_info _db,DB_lodging_info _dblodging,DB_transport_info dB_Transport)
         {
             bool isSuccess = false;
             try
             {
                 call_info db = new call_info
                 {
-                   slno = model.slno,
-                   project_name = model.project_name,
-                   role_id=model.role_id,
-                   main_category_id=model.main_category_id,
-                   sub_category_id=model.sub_category_id,
-                   date=model.date,
-                   general_call_time=model.general_call_time,
-                   shooting_call_time=model.shooting_call_time,
-                   location_id=model.location_id,
-                   phone_number=model.phone_number,
-                   created_date=model.created_date,
-                    flag = model.flag
+                   slno = model.callinfo.slno,
+                   project_name = model.callinfo.project_name,
+                   role_id=model.callinfo.role_id,
+                   main_category_id=model.callinfo.main_category_id,
+                   sub_category_id=model.callinfo.sub_category_id,
+                   date=model.callinfo.date,
+                   general_call_time=model.callinfo.general_call_time,
+                   shooting_call_time=model.callinfo.shooting_call_time,
+                   location_id=model.callinfo.location_id,
+                   phone_number=model.callinfo.phone_number,
+                   created_date=model.callinfo.created_date,
+                    flag = model.callinfo.flag
                 };
-                isSuccess = _db.SaveCallinfo(db);
+                int callid = _db.SaveCallinfo(db);
+                //
+                if(callid>0)
+                {
+                    Manage_lodging_info manage_Lodging = new Manage_lodging_info();
+                    model.lodging.callinfoid = callid;
+                    manage_Lodging.Save(model.lodging, _dblodging);
+
+                    Manage_transport_info manage_transport = new Manage_transport_info();
+                    model.transport.callinfoid = callid;
+                    manage_transport.Save(model.transport, dB_Transport);
+
+                    //contactus info
+                    foreach (int item in model.contactusid)
+                    {
+                        
+                    }
+                }
                 // Task.Run(()=> _db.SaveTrainingDB(_traningdb));
                 return isSuccess;
             }

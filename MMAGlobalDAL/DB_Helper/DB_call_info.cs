@@ -15,9 +15,9 @@ namespace MMAGlobalDAL.Database.DB_Helper
         {
             _DataContext = DataContext;
         }
-        public bool SaveCallinfo(call_info call_info)
+        public int SaveCallinfo(call_info call_info)
         {
-            bool isSuccess = false;
+            int callid = 0;
             try
             {
 
@@ -27,13 +27,13 @@ namespace MMAGlobalDAL.Database.DB_Helper
                     _DataContext.Entry(call_info).State = EntityState.Modified;
                 }
                 _DataContext.SaveChanges();
-                isSuccess = true;
+                callid = call_info.slno;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return callid;
             }
-            return isSuccess;
+            return callid;
         }
         public List<call_info> Getdata()
         {

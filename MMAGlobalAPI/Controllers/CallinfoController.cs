@@ -17,6 +17,8 @@ namespace MMAGlobalAPI.Controllers
     public class CallinfoController : Controller
     {
         private readonly DB_call_info _db;
+        private readonly DB_lodging_info _dbloding;
+        private readonly DB_transport_info _dbtransport;
         public CallinfoController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_call_info(eF_DataContext);
@@ -24,13 +26,13 @@ namespace MMAGlobalAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/SaveCallinfo")]
-        public IActionResult Post([FromBody] call_info_Model model)
+        public IActionResult Post([FromBody] callinfodetails_Model model)
         {
             try
             {
                 Manage_call_info _Manage = new Manage_call_info();
 
-                bool isSuccess = _Manage.Save(model, _db);
+                bool isSuccess = _Manage.Save(model, _db, _dbloding,_dbtransport);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

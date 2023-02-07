@@ -14,5 +14,6 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public string location { get; set; }
         public string address { get; set; }
         public string note { get; set; }
+        public int callinfo_id { get; set; }
     }
 }

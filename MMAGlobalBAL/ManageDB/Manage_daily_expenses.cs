@@ -70,7 +70,7 @@ namespace MMAGlobalBAL.ManageDB
                     amount = model.amount,
                     created_date = model.created_date,
                     name=expenses_category.name,
-                     projectname = projectname.project_name
+                    projectname = projectname.project_name
 
                           }).ToList();
 

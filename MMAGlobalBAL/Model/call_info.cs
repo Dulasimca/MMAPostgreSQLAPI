@@ -21,4 +21,15 @@ namespace MMAGlobalBAL.Model
         public DateTime created_date { get; set; }
         public Boolean flag { get; set; }
     }
+
+    public class callinfodetails_Model
+    {
+        public call_info_Model callinfo { get; set; }
+        public lodging_info_Model lodging { get; set; }
+        public transport_info_Model transport { get; set; }
+
+        public List<int> contactusid { get; set; }
+
+    }
+
 }

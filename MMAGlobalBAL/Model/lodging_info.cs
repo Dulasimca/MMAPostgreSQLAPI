@@ -12,5 +12,6 @@ namespace MMAGlobalBAL.Model
         public string location { get; set; }
         public string address { get; set; }
         public string note { get; set; }
+        public int callinfoid { get; set; }
     }
 }
