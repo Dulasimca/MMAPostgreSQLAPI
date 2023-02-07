@@ -30,7 +30,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public string address2 { get; set; }
         public string pincode { get; set; }
         public Boolean isunion { get; set; }
-        public int unionid { get; set; }
+        public int? unionid { get; set; }
         public Boolean flag { get; set; }
 
 
