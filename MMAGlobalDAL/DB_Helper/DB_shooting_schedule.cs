@@ -15,29 +15,32 @@ namespace MMAGlobalDAL.Database.DB_Helper
         {
             _DataContext = DataContext;
         }
-        public bool Saveshootingschedule(shooting_schedule shooting_schedule)
+        public int Saveshooting_schedule(shooting_schedule shooting_schedule)
         {
-            bool isSuccess = false;
+            int shooting_id = 0;
             try
             {
 
-                _DataContext.shooting_schedule.Add(shooting_schedule);
+                _DataContext.shooting_shedule.Add(shooting_schedule);
                 if (shooting_schedule.slno > 0)
                 {
                     _DataContext.Entry(shooting_schedule).State = EntityState.Modified;
                 }
                 _DataContext.SaveChanges();
-                isSuccess = true;
+                shooting_id = shooting_schedule.slno;
+
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                return shooting_id;
             }
-            return isSuccess;
+            return shooting_id;
         }
+              
         public List<shooting_schedule> Getdata()
         {
-            return _DataContext.shooting_schedule.ToList();
+            return _DataContext.shooting_shedule.ToList();
         }
 
     }
