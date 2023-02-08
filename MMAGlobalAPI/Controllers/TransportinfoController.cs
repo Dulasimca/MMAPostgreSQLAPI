@@ -15,9 +15,11 @@ namespace MMAGlobalAPI.Controllers
     public class TransportinfoController : Controller
     {
         private readonly DB_transport_info _db;
+        private readonly DB_contacts_list _contact;
         public TransportinfoController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_transport_info(eF_DataContext);
+            _contact = new DB_contacts_list(eF_DataContext);
         }
 
         [HttpPost]
@@ -45,7 +47,7 @@ namespace MMAGlobalAPI.Controllers
             try
             {
                 Manage_transport_info _Manage = new Manage_transport_info();
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db,_contact);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

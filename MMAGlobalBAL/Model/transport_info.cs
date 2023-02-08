@@ -15,5 +15,6 @@ namespace MMAGlobalBAL.Model
         public string drop_location { get; set; }
         public int passenger_id { get; set; }
         public int callinfoid { get; set; }
+        public string passengername { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace MMAGlobalBAL.ManageDB
         /// <param name="model">we have to send the callinfo properties with values</param>
         /// <param name="_db">Database connectoin property for callinfo</param>
         /// <returns>return boolean values. true or false</returns>
-        public bool Save(callinfodetails_Model model, DB_call_info _db,DB_lodging_info _dblodging,DB_transport_info dB_Transport)
+        public bool Save(callinfodetails_Model model, DB_call_info _db,DB_lodging_info _dblodging,DB_transport_info dB_Transport,DB_call_character _dbCall)
         {
             bool isSuccess = false;
             try
@@ -54,7 +54,13 @@ namespace MMAGlobalBAL.ManageDB
                     //contactus info
                     foreach (int item in model.contactusid)
                     {
-                        
+                        call_character _Character = new call_character
+                        {
+                            callinfo_id = callid,
+                            contactlist_id = item,
+                            flag =true
+                        };
+                        _dbCall.Savecallcharacter(_Character);
                     }
                 }
                 // Task.Run(()=> _db.SaveTrainingDB(_traningdb));
@@ -67,27 +73,37 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<call_info_Model> GetData(DB_call_info _db)
+        public List<call_info_Model> GetData(DB_call_info _db, DB_projectcreation _dailyprojectname, DB_role_master _rolemaster, DB_maincategorymaster _Maincategorymaster)
         {
             try
             {
                 List<call_info_Model> _Model = new List<call_info_Model>();
                 var restul = _db.Getdata();
-                restul.ForEach(model => _Model.Add(new call_info_Model()
-                {
+                var _projectname = _dailyprojectname.Getdata();
+                var _role = _rolemaster.Getdata();
+                var _maincategory = _Maincategorymaster.Getdata();
+
+                _Model = (from model in restul
+                          join projectname in _projectname on model.project_name equals projectname.project_id
+                          join role in _role on model.role_id equals role.roleid
+                          join main_category_id in _maincategory on model.main_category_id equals main_category_id.sino
+                          select new call_info_Model
+                          //restul.ForEach(model => _Model.Add(new call_info_Model()
+                          {
                     slno = model.slno,
                     project_name = model.project_name,
                     role_id = model.role_id,
                     main_category_id = model.main_category_id,
-                    sub_category_id = model.sub_category_id,
                     date = model.date,
                     general_call_time = model.general_call_time,
                     shooting_call_time = model.shooting_call_time,
                     location_id = model.location_id,
                     phone_number = model.phone_number,
                     created_date = model.created_date,
-                    flag = model.flag
-                }));
+                    flag = model.flag,
+                    projectname = projectname.project_name,
+                    rolename = role.rolename,
+                          }).ToList();
 
                 return _Model;
             }

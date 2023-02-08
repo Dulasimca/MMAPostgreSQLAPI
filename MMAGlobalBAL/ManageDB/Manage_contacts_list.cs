@@ -55,7 +55,7 @@ namespace MMAGlobalBAL.ManageDB
             try
             {
                 List<contacts_list_model> _Model = new List<contacts_list_model>();
-                var restul = _db.Getdata();
+                var result = _db.Getdata();
                 var _country = _Countrymaster.Getdata();
                 var _state = _Statemaster.Getdata();
                 var _city = _City_Master.Getdata();
@@ -65,7 +65,7 @@ namespace MMAGlobalBAL.ManageDB
                 var _subcategory = _subcategorymaster.Getdata();
 
 
-                _Model = (from contactslist in restul
+                _Model = (from contactslist in result
                           join countrycode in _country on contactslist.countrycode equals countrycode.countrycode
                           join statecode in _state on contactslist.statecode equals statecode.statecode
                           join citycode in _city on contactslist.citycode equals citycode.citycode

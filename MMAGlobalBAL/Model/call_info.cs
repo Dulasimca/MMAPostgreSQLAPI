@@ -20,6 +20,9 @@ namespace MMAGlobalBAL.Model
         public string phone_number { get; set; }
         public DateTime created_date { get; set; }
         public Boolean flag { get; set; }
+        public string projectname { get; set; }
+        public string rolename { get; set; }
+        public string categoryname { get; set; }
     }
 
     public class callinfodetails_Model
