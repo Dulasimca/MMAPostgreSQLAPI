@@ -41,6 +41,27 @@ namespace MMAGlobalAPI.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Route("api/[controller]/UpdateApprovalStatus")]
+        public IActionResult Post([FromBody] Approval_registration_Model model)
+        {
+            try
+            {
+                ManageRegistration _Manage = new ManageRegistration();
+
+                bool isSuccess = _Manage.Update(model, _db);
+                return Ok(true);// ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError("Update status : " + ex.Message);
+                return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+
+
+
         [HttpGet]
         [Route("api/[controller]/GetRegistration")]
         public IActionResult Get()

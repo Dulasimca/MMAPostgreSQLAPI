@@ -31,16 +31,17 @@ namespace MMAGlobalBAL.ManageDB
                     first_name = model.first_name,
                     last_name = model.last_name,
                     dob = model.dob,
-                    mobile_number=model.mobile_number,
-                    email_id=model.email_id,
-                    country=model.country,
-                    state=model.state,
-                    city=model.city,
-                    address1=model.address1,
-                    address2=model.address2,
-                    pincode=model.pincode,
-                    created_date=model.created_date,
-                    flag = model.flag
+                    mobile_number = model.mobile_number,
+                    email_id = model.email_id,
+                    country = model.country,
+                    state = model.state,
+                    city = model.city,
+                    address1 = model.address1,
+                    address2 = model.address2,
+                    pincode = model.pincode,
+                    created_date = model.created_date,
+                    flag = model.flag,
+                    approvalstatus = model.approvalstatus
                 };
                 isSuccess = _db.SaveRegistrationDB(db);
                 // Task.Run(()=> _db.SaveTrainingDB(_traningdb));
@@ -53,7 +54,31 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<registration_Model> GetData(DB_registration _db, DB_country_master _Countrymaster,DB_statemaster _Statemaster,DB_city_master _City_Master)
+
+        public bool Update(Approval_registration_Model model, DB_registration _db )
+        {
+            bool isSuccess = false;
+            try
+            {
+                registration db = new registration
+                {
+                    production_id = model.production_id,
+                    approvalstatus = model.approvalstatus
+                };
+                isSuccess = _db.UpdateStatus(db);
+               
+
+                // Task.Run(()=> _db.SaveTrainingDB(_traningdb));
+                return isSuccess;
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError("ManageRegistration save method: " + ex.Message);
+                return isSuccess;
+            }
+
+        }
+        public List<registration_Model> GetData(DB_registration _db, DB_country_master _Countrymaster, DB_statemaster _Statemaster, DB_city_master _City_Master)
         {
             try
             {
@@ -67,26 +92,27 @@ namespace MMAGlobalBAL.ManageDB
                           join state in _state on registration.state equals state.statecode
                           join city in _city on registration.city equals city.citycode
                           select new registration_Model
-                //restul.ForEach(model => _Model.Add(new registration_Model()
-                {
-                    production_id = registration.production_id,
-                    production_house_name = registration.production_house_name,
-                    first_name = registration.first_name,
-                    last_name = registration.last_name,
-                    dob = registration.dob,
-                    mobile_number = registration.mobile_number,
-                    email_id = registration.email_id,
-                    country = registration.country,
-                    state = registration.state,
-                    city = registration.city,
-                    address1 = registration.address1,
-                    address2 = registration.address2,
-                    pincode = registration.pincode,
-                    created_date = registration.created_date,
-                    flag = registration.flag,
-                     countryname = country.countryname,
-                     statename=state.statename,
-                     cityname=city.cityname
+                          //restul.ForEach(model => _Model.Add(new registration_Model()
+                          {
+                              production_id = registration.production_id,
+                              production_house_name = registration.production_house_name,
+                              first_name = registration.first_name,
+                              last_name = registration.last_name,
+                              dob = registration.dob,
+                              mobile_number = registration.mobile_number,
+                              email_id = registration.email_id,
+                              country = registration.country,
+                              state = registration.state,
+                              city = registration.city,
+                              address1 = registration.address1,
+                              address2 = registration.address2,
+                              pincode = registration.pincode,
+                              created_date = registration.created_date,
+                              flag = registration.flag,
+                              countryname = country.countryname,
+                              statename = state.statename,
+                              cityname = city.cityname,
+                              approvalstatus = registration.approvalstatus
                           }).ToList();
 
                 return _Model;

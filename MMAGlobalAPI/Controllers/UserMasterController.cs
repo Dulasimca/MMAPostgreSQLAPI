@@ -57,5 +57,24 @@ namespace MMAGlobalAPI.Controllers
             }
         }
 
+        //Update Change Password.
+        [HttpPost]
+        [Route("api/[controller]/UpdateChangepassword")]
+        public IActionResult Post([FromBody] update_password_model model)
+        {
+            try
+            {
+                Manage_user_master _Manage = new Manage_user_master();
+
+                bool isSuccess = _Manage.Update(model, _db);
+                return Ok(true);// ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError("UpdateChangePassword : " + ex.Message);
+                return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+
     }
 }
