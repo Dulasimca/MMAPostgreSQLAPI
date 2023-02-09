@@ -34,6 +34,26 @@ namespace MMAGlobalDAL.Database.DB_Helper
             }
             return isSuccess;
         }
+
+        public bool SaveUserMasterForApproval(user_master user_master)
+        {
+            bool isSuccess = false;
+            try
+            {
+                var result = _DataContext.user_master.Where(a => a.username_emailid == user_master.username_emailid).FirstOrDefault();
+                if (result == null)
+                {
+                    _DataContext.user_master.Add(user_master);
+                    _DataContext.SaveChanges();
+                }
+                isSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return isSuccess;
+        }
         public List<user_master> Getdata()
         {
             return _DataContext.user_master.ToList();
@@ -41,6 +61,29 @@ namespace MMAGlobalDAL.Database.DB_Helper
         public user_master GetUserMasterByName(string username)
         {
             return _DataContext.user_master.Where(a => a.username_emailid.ToLower() == username.ToLower()).FirstOrDefault();
+        }
+
+        //Update change password
+        public bool UpdateChangePassword(user_master user_master)
+
+        {
+            bool isSuccess = false;
+            try
+            {
+                var result = _DataContext.user_master.Where(a => a.id == user_master.id).FirstOrDefault();
+
+                if (result != null)
+                {
+                    result.password = user_master.password;
+                }
+                _DataContext.SaveChanges();
+                isSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return isSuccess;
         }
     }
 }
