@@ -30,7 +30,7 @@ namespace MMAGlobalBAL.ManageDB
                     location = model.location,
                     address = model.address,
                     note = model.note,
-
+                    callinfo_id=model.callinfoid
                 };
                 isSuccess = _db.SaveLodginginfo(lodging_info);
                 return isSuccess;
@@ -55,6 +55,7 @@ namespace MMAGlobalBAL.ManageDB
                     location = model.location,
                     address = model.address,
                     note = model.note,
+                    callinfoid=model.callinfo_id
                 }));
 
                 return _Model;

@@ -30,7 +30,8 @@ namespace MMAGlobalBAL.ManageDB
                     pickup_time =model.pickup_time,
                     pickup_location=model.pickup_location,
                     drop_location=model.drop_location,
-                    passenger_id=model.passenger_id
+                    passenger_id=model.passenger_id,
+                    callinfo_id=model.callinfoid,
 
                 };
                 isSuccess = _db.Savetransportinfo(transport_info);
@@ -44,21 +45,28 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<transport_info_Model> GetData(DB_transport_info _db)
+        public List<transport_info_Model> GetData(DB_transport_info _db,DB_contacts_list _contact)
         {
             try
             {
                 List<transport_info_Model> _Model = new List<transport_info_Model>();
                 var restul = _db.Getdata();
-                restul.ForEach(model => _Model.Add(new transport_info_Model()
+                var _passenger = _contact.Getdata();
+                _Model = (from model in restul
+                          join passengername in _passenger on model.passenger_id equals passengername.slno
+                          select new transport_info_Model
+                //restul.ForEach(model => _Model.Add(new transport_info_Model()
                 {
                     slno = model.slno,
                     driver_name = model.driver_name,
                     pickup_time = model.pickup_time,
                     pickup_location = model.pickup_location,
                     drop_location = model.drop_location,
-                    passenger_id = model.passenger_id
-                }));
+                    passenger_id = model.passenger_id,
+                    callinfoid=model.callinfo_id,
+                    passengername = passengername.first_name
+                          }).
+                ToList();
 
                 return _Model;
             }

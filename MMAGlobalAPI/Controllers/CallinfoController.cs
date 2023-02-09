@@ -19,9 +19,19 @@ namespace MMAGlobalAPI.Controllers
         private readonly DB_call_info _db;
         private readonly DB_lodging_info _dbloding;
         private readonly DB_transport_info _dbtransport;
+        private readonly DB_call_character _dbCall;
+        private readonly DB_projectcreation _dailyprojectname;
+        private readonly DB_role_master _rolemaster;
+        private readonly DB_maincategorymaster _Maincategorymaster;
         public CallinfoController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_call_info(eF_DataContext);
+            _dbCall = new DB_call_character(eF_DataContext);
+            _dbloding = new DB_lodging_info(eF_DataContext);
+            _dbtransport = new DB_transport_info(eF_DataContext);
+            _dailyprojectname = new DB_projectcreation(eF_DataContext);
+            _rolemaster = new DB_role_master(eF_DataContext);
+            _Maincategorymaster = new DB_maincategorymaster(eF_DataContext);
         }
 
         [HttpPost]
@@ -32,7 +42,7 @@ namespace MMAGlobalAPI.Controllers
             {
                 Manage_call_info _Manage = new Manage_call_info();
 
-                bool isSuccess = _Manage.Save(model, _db, _dbloding,_dbtransport);
+                bool isSuccess = _Manage.Save(model, _db, _dbloding,_dbtransport, _dbCall);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)
@@ -49,7 +59,7 @@ namespace MMAGlobalAPI.Controllers
             try
             {
                 Manage_call_info _Manage = new Manage_call_info();
-                var result = _Manage.GetData(_db);
+                var result = _Manage.GetData(_db, _dailyprojectname, _rolemaster, _Maincategorymaster);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

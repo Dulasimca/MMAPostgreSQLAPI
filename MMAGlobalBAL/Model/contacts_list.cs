@@ -25,7 +25,7 @@ namespace MMAGlobalBAL.Model
         public string address2 { get; set; }
         public string pincode { get; set; }
         public Boolean isunion { get; set; }
-        public int unionid { get; set; }
+        public int? unionid { get; set; }
         public Boolean flag { get; set; }
         public string countryname { get; set; }
         public string statename { get; set; }
@@ -34,8 +34,6 @@ namespace MMAGlobalBAL.Model
         public string unionname { get; set; }
         public string maincategoryname { get; set; }
         public string subcategoryname { get; set; }
-
-
 
 
     }

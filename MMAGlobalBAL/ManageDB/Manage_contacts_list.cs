@@ -55,7 +55,7 @@ namespace MMAGlobalBAL.ManageDB
             try
             {
                 List<contacts_list_model> _Model = new List<contacts_list_model>();
-                var restul = _db.Getdata();
+                var result = _db.Getdata();
                 var _country = _Countrymaster.Getdata();
                 var _state = _Statemaster.Getdata();
                 var _city = _City_Master.Getdata();
@@ -65,14 +65,15 @@ namespace MMAGlobalBAL.ManageDB
                 var _subcategory = _subcategorymaster.Getdata();
 
 
-                _Model = (from contactslist in restul
+                _Model = (from contactslist in result
                           join countrycode in _country on contactslist.countrycode equals countrycode.countrycode
                           join statecode in _state on contactslist.statecode equals statecode.statecode
                           join citycode in _city on contactslist.citycode equals citycode.citycode
                           join roleid in _role on contactslist.roleid equals roleid.roleid
-                          join unionid in _union on contactslist.unionid equals unionid.sino
                           join maincategory_id in _maincategory on contactslist.maincategory_id equals maincategory_id.sino  
                           join subcategory_id  in _subcategory on contactslist.subcategory_id equals subcategory_id.sino
+                          join unionid in _union on contactslist.unionid equals unionid.sino into lunion
+                          from u in lunion.DefaultIfEmpty()
                           select new contacts_list_model
                           //  restul.ForEach(model => _Model.Add(new contacts_list_model()
                           { 
@@ -93,18 +94,17 @@ namespace MMAGlobalBAL.ManageDB
                     address2 = contactslist.address2,
                     pincode = contactslist.pincode,
                     isunion = contactslist.isunion,
-                    unionid = contactslist.unionid,
+                    unionid = (int?)contactslist.unionid ?? 0,
                     flag = contactslist.flag,
                     countryname = countrycode.countryname,
                     statename = statecode.statename,
                     cityname = citycode.cityname,
                     rolename= roleid.rolename,
-                    unionname = unionid.unionname,
+                   // unionname = u.unionname,
                     maincategoryname=maincategory_id.categoryname,
                     subcategoryname=subcategory_id.categoryname,
 
                           }).ToList();
-
                 return _Model;
             }
             catch (Exception ex)
