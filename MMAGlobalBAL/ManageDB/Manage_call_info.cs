@@ -73,7 +73,7 @@ namespace MMAGlobalBAL.ManageDB
             }
 
         }
-        public List<call_info_Model> GetData(DB_call_info _db, DB_projectcreation _dailyprojectname, DB_role_master _rolemaster, DB_maincategorymaster _Maincategorymaster)
+        public List<call_info_Model> GetData(DB_call_info _db, DB_projectcreation _dailyprojectname, DB_role_master _rolemaster, DB_maincategorymaster _Maincategorymaster, DB_subcategorymasterdb _subcategorymaster, DB_location_info _locationname)
         {
             try
             {
@@ -82,11 +82,14 @@ namespace MMAGlobalBAL.ManageDB
                 var _projectname = _dailyprojectname.Getdata();
                 var _role = _rolemaster.Getdata();
                 var _maincategory = _Maincategorymaster.Getdata();
-
+                var _subcategory = _subcategorymaster.Getdata();
+                var _location = _locationname.Getdata();
                 _Model = (from model in restul
                           join projectname in _projectname on model.project_name equals projectname.project_id
                           join role in _role on model.role_id equals role.roleid
                           join main_category_id in _maincategory on model.main_category_id equals main_category_id.sino
+                          join sub_category_id in _subcategory on model.sub_category_id equals sub_category_id.sino
+                          join location_name in _location on model.location_id equals location_name.slno
                           select new call_info_Model
                           //restul.ForEach(model => _Model.Add(new call_info_Model()
                           {
@@ -103,6 +106,9 @@ namespace MMAGlobalBAL.ManageDB
                     flag = model.flag,
                     projectname = projectname.project_name,
                     rolename = role.rolename,
+                    categoryname = main_category_id.categoryname,
+                    subcategoryname = sub_category_id.categoryname,
+                    location_name =location_name.location_name,
                           }).ToList();
 
                 return _Model;

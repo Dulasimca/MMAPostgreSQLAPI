@@ -23,6 +23,8 @@ namespace MMAGlobalAPI.Controllers
         private readonly DB_projectcreation _dailyprojectname;
         private readonly DB_role_master _rolemaster;
         private readonly DB_maincategorymaster _Maincategorymaster;
+        private readonly DB_subcategorymasterdb _subcategorymaster;
+        private readonly DB_location_info _locationname;
         public CallinfoController(EF_MMADatabaseContext eF_DataContext)
         {
             _db = new DB_call_info(eF_DataContext);
@@ -32,6 +34,8 @@ namespace MMAGlobalAPI.Controllers
             _dailyprojectname = new DB_projectcreation(eF_DataContext);
             _rolemaster = new DB_role_master(eF_DataContext);
             _Maincategorymaster = new DB_maincategorymaster(eF_DataContext);
+            _subcategorymaster = new DB_subcategorymasterdb(eF_DataContext);
+            _locationname = new DB_location_info(eF_DataContext);
         }
 
         [HttpPost]
@@ -59,7 +63,7 @@ namespace MMAGlobalAPI.Controllers
             try
             {
                 Manage_call_info _Manage = new Manage_call_info();
-                var result = _Manage.GetData(_db, _dailyprojectname, _rolemaster, _Maincategorymaster);
+                var result = _Manage.GetData(_db, _dailyprojectname, _rolemaster, _Maincategorymaster, _subcategorymaster, _locationname);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
             }
             catch (Exception ex)

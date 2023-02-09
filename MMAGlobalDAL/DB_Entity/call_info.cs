@@ -17,8 +17,8 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public int main_category_id { get; set; }
         public int sub_category_id { get; set; }
         public DateTime date { get; set; }
-        public  DateTime general_call_time { get; set; }
-        public DateTime shooting_call_time { get; set; }
+        public TimeSpan general_call_time { get; set; }
+        public TimeSpan shooting_call_time { get; set; }
         public int location_id { get; set; }
         public string phone_number { get; set; }
         public DateTime created_date{ get; set; }
