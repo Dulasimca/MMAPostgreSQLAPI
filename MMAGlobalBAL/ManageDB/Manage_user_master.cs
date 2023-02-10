@@ -93,5 +93,27 @@ namespace MMAGlobalBAL.ManageDB
             }
             return response;
         }
+        //Update Change Password
+        public bool Update(update_password_model model, DB_user_master _db)
+        {
+            bool isSuccess = false;
+            try
+            {
+                user_master db = new user_master();
+                model.password = security.Encryptword(model.password);
+                {
+                    db.id = model.id;
+                    db.password = model.password;
+                };
+                isSuccess = _db.UpdateChangePassword(db);
+                return isSuccess;
+            }
+            catch (Exception ex)
+            {
+                AuditLog.WriteError("ManageChangePassword save method: " + ex.Message);
+                return isSuccess;
+            }
+
+        }
     }
 }

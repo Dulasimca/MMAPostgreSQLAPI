@@ -12,51 +12,43 @@ using System.Threading.Tasks;
 namespace MMAGlobalAPI.Controllers
 {
     [ApiController]
-    public class TransportinfoController : Controller
+    public class ShootingCharacterController : Controller
     {
-        private readonly DB_transport_info _db;
-        private readonly DB_contacts_list _contact;
-        public TransportinfoController(EF_MMADatabaseContext eF_DataContext)
+        private readonly DB_shooting_character _db;
+        public ShootingCharacterController(EF_MMADatabaseContext eF_DataContext)
         {
-            _db = new DB_transport_info(eF_DataContext);
-            _contact = new DB_contacts_list(eF_DataContext);
+            _db = new DB_shooting_character(eF_DataContext);
         }
-
         [HttpPost]
-        [Route("api/[controller]/Savetransportinfo")]
-        public IActionResult Post([FromBody] transport_info_Model model)
+        [Route("api/[controller]/Saveshootingcharacter")]
+        public IActionResult Post([FromBody] shooting_character_model model)
         {
             try
             {
-                Manage_transport_info _Manage = new Manage_transport_info();
-
-                bool isSuccess = _Manage.Save(model, _db);
+                Manage_shooting_character _Manage = new Manage_shooting_character(); bool isSuccess = _Manage.Saveshootingcharacter(model, _db);
                 return Ok(true);// ResponseHandler.GetAppResponse(type, model));
-            }
+            }
             catch (Exception ex)
             {
                 AuditLog.WriteError("SaveCasetypeMaster : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
-            }
+            }
         }
-
         [HttpGet]
-        [Route("api/[controller]/Gettransportinfo")]
+        [Route("api/[controller]/Getshootingcharacter")]
         public IActionResult Get()
         {
             try
             {
-                Manage_transport_info _Manage = new Manage_transport_info();
-                var result = _Manage.GetData(_db,_contact);
+                Manage_shooting_character _Manage = new Manage_shooting_character();
+                var result = _Manage.GetData(_db);
                 return Ok(result);// ResponseHandler.GetAppResponse(type, model));
-            }
+            }
             catch (Exception ex)
             {
-                AuditLog.WriteError("Gettransportinfo : " + ex.Message);
+                AuditLog.WriteError("Getcallcharacter : " + ex.Message);
                 return BadRequest(false); //ResponseHandler.GetExceptionResponse(ex));
-            }
+            }
         }
     }
 }
-
-

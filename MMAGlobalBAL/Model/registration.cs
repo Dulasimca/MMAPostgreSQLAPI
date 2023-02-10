@@ -26,6 +26,12 @@ namespace MMAGlobalBAL.Model
         public string countryname { get; set; }
         public string statename { get; set; }
         public string cityname { get; set; }
+        public int approvalstatus { get; set; }
+    }
 
+    public class Approval_registration_Model
+    {
+        public int production_id { get; set; }
+        public int approvalstatus { get; set; }
     }
 }

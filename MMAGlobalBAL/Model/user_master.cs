@@ -15,4 +15,11 @@ namespace MMAGlobalBAL.Model
         public Boolean flag { get; set; }
         public string rolename { get; set; }
     }
+
+    //model entities for update change password
+    public class update_password_model
+    {
+        public int id { get; set; }
+        public string password { get; set; }
+    }
 }

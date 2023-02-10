@@ -10,10 +10,11 @@ namespace MMAGlobalBAL.Model
     {
         public int slno { get; set; }
         public string driver_name { get; set; }
-        public DateTime pickup_time { get; set; }
+        public TimeSpan pickup_time { get; set; }
         public string pickup_location { get; set; }
         public string drop_location { get; set; }
         public int passenger_id { get; set; }
         public int callinfoid { get; set; }
+        public string passengername { get; set; }
     }
 }

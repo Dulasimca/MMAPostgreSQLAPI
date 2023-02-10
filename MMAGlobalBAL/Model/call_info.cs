@@ -14,12 +14,17 @@ namespace MMAGlobalBAL.Model
         public int main_category_id { get; set; }
         public int sub_category_id { get; set; }
         public DateTime date { get; set; }
-        public DateTime general_call_time { get; set; }
-        public DateTime shooting_call_time { get; set; }
+        public TimeSpan general_call_time { get; set; }
+        public TimeSpan shooting_call_time { get; set; }
         public int location_id { get; set; }
         public string phone_number { get; set; }
         public DateTime created_date { get; set; }
         public Boolean flag { get; set; }
+        public string projectname { get; set; }
+        public string rolename { get; set; }
+        public string categoryname { get; set; }
+        public string subcategoryname { get; set; }
+        public string location_name { get; set; }
     }
 
     public class callinfodetails_Model

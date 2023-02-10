@@ -28,5 +28,6 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public int pincode{ get; set; }
         public DateTime created_date { get; set; }
         public Boolean flag { get; set; }
+        public int approvalstatus { get; set; }
     }
 }
