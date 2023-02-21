@@ -51,7 +51,7 @@ namespace MMAGlobalDAL
         public DbSet<call_character> call_character { get; set; }
 
 
-
+          
         public DbSet<call_info> call_info { get; set; }
 
         public DbSet<location_info> locationinfo { get; set; }
