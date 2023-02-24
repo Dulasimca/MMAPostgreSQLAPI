@@ -38,7 +38,6 @@ namespace MMAGlobalDAL
 
         public DbSet<contacts_list> contactslist { get; set; }
 
-
         public DbSet<project_creation> projectcreation { get; set; }
 
         public DbSet<fund_utilization> fund_utilization { get; set; }
@@ -50,8 +49,6 @@ namespace MMAGlobalDAL
         public DbSet<lodging_info>lodging_info { get; set; }
         public DbSet<call_character> call_character { get; set; }
 
-
-          
         public DbSet<call_info> call_info { get; set; }
 
         public DbSet<location_info> locationinfo { get; set; }
