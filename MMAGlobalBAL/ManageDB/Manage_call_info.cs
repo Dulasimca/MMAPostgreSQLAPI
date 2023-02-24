@@ -97,6 +97,7 @@ namespace MMAGlobalBAL.ManageDB
                     project_name = model.project_name,
                     role_id = model.role_id,
                     main_category_id = model.main_category_id,
+                    sub_category_id =model.sub_category_id,
                     date = model.date,
                     general_call_time = model.general_call_time,
                     shooting_call_time = model.shooting_call_time,
