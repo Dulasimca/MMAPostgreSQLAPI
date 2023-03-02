@@ -18,6 +18,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
         public int roleid { get; set; }
 
         public string password { get; set; }
+        public string production_house_name { get; set; }
         
         public Boolean flag { get; set; }
     }

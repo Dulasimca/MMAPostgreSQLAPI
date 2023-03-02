@@ -35,6 +35,7 @@ namespace MMAGlobalBAL.ManageDB
                     _user_masters.username_emailid = model.username_emailid;
                     _user_masters.roleid = model.roleid;
                     _user_masters.password = model.password;
+                    _user_masters.production_house_name = model.production_house_name;
                     _user_masters.flag = model.flag;
                 };
                 isSuccess = _db.SaveUserMaster(_user_masters);
@@ -63,7 +64,8 @@ namespace MMAGlobalBAL.ManageDB
                               roleid = user.roleid,
                               password = security.Decryptword(user.password),
                               flag = user.flag,
-                              rolename = role.rolename
+                              rolename = role.rolename,
+                              production_house_name = user.production_house_name
                           }).ToList();
                
                 return _Model;
@@ -86,6 +88,7 @@ namespace MMAGlobalBAL.ManageDB
                 response.roleid = _dataFromDB.roleid;
                 response.password = _dataFromDB.password;
                 response.flag = _dataFromDB.flag;
+                response.production_house_name = _dataFromDB.production_house_name;
             }
             else
             {

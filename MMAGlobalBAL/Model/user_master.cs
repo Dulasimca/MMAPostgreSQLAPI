@@ -13,6 +13,7 @@ namespace MMAGlobalBAL.Model
         public int roleid { get; set; }
         public string password { get; set; }
         public Boolean flag { get; set; }
+        public string production_house_name { get; set; }
         public string rolename { get; set; }
     }
 

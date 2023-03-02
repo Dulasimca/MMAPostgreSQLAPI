@@ -60,6 +60,8 @@ namespace MMAGlobalDAL
 
         public DbSet<shooting_character> shooting_character { get; set; }
 
+        public DbSet<Mail_Entity>Mail_Entity { get; set; }
+
 
     }
 }
