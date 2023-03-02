@@ -29,6 +29,7 @@ namespace MMAGlobalBAL.ManageDB
                 {
                     sino = model.sino,
                     categoryname = model.categoryname,
+                    maincategorycode=model.maincategorycode,
                     flag = model.flag
                 };
                 isSuccess = _db.SaveSubCategory(sub_category);
@@ -54,6 +55,7 @@ namespace MMAGlobalBAL.ManageDB
                 {
                     sino = model.sino,
                     categoryname = model.categoryname,
+                    maincategorycode = model.maincategorycode,
                     flag = model.flag
                 }));
 

@@ -15,6 +15,7 @@ namespace MMAGlobalDAL.Database.DB_Entity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int sino { get; set; }
         public string categoryname { get; set; }
+        public int maincategorycode { get; set; }
         public Boolean flag { get; set; }
     }
 }

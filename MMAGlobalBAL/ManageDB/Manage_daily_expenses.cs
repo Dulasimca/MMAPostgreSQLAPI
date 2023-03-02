@@ -71,7 +71,6 @@ namespace MMAGlobalBAL.ManageDB
                     created_date = model.created_date,
                     name=expenses_category.name,
                     projectname = projectname.project_name
-
                           }).ToList();
 
                 return _Model;
